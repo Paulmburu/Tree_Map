@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/undraw_photo_session_clqr"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.TreeImageFragment">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:layout_gravity="bottom">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@android:color/white"
+            app:cardCornerRadius="20dp"
+            style="@style/Widget.MaterialComponents.FloatingActionButton"
+            android:src="@drawable/icons8_add_camera_72"
+            android:clickable="false"
+            android:focusable="false"
+            app:cardElevation="10dp"
+            android:layout_gravity="center_horizontal|center_vertical"/>
+    </androidx.cardview.widget.CardView>
+
+</FrameLayout>

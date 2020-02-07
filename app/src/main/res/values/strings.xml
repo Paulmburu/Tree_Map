@@ -1,3 +1,28 @@
 <resources>
     <string name="app_name">Tree Map</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="sign_in">Sign in</string>
+    <string name="welcome_back">Welcome Back !</string>
+    <string name="tree_tv">TREE</string>
+    <string name="map_tv">MAP</string>
+    <string name="new_here_sign_up">New Here ? Sign Up</string>
+    <string name="username_tv">Username</string>
+    <string name="Password_tv">Password</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="create_account">Create Account</string>
+    <string name="email_text">Email</string>
+    <string name="add_tree_image">Add tree image</string>
+    <string name="tree_name">Tree Name</string>
+    <string name="tree_species">Tree Species</string>
+    <string name="no_of_trees">Number of trees</string>
+    <string name="get_area_location">Get area location</string>
+    <string name="submit_text">Submit</string>
+    <string name="phone_number">Phone number</string>
+    <string name="save_text">Save</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="navigation_drawer_open">open drawer</string>
+    <string name="navigation_drawer_close">close drawer</string>
+
 </resources>

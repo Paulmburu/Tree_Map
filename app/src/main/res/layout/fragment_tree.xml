@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.TreeFragment">
+
+
+    <Button
+        android:id="@+id/submit_new_tree_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/fragment_margin_left_right"
+        android:layout_marginTop="24dp"
+        android:layout_marginRight="@dimen/fragment_margin_left_right"
+        android:background="@drawable/button_round_corners_background"
+        android:text="@string/submit_text"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/get_area_location_button_id" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/new_tree_image_fab"
+        style="@style/Widget.MaterialComponents.FloatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="173dp"
+        android:layout_marginTop="72dp"
+        android:layout_marginEnd="182dp"
+        android:clickable="true"
+        android:foregroundGravity="clip_horizontal"
+        android:src="@drawable/icons8_plus_64"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/add_new_tree_image_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center_horizontal"
+        android:text="@string/add_tree_image"
+        android:textColor="@color/colorMain"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@+id/new_tree_image_fab"
+        tools:layout_editor_absoluteX="176dp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/fragment_margin_left_right"
+        android:layout_marginRight="@dimen/fragment_margin_left_right"
+        android:layout_marginTop="65dp"
+        android:background="@drawable/text_input_round_corners"
+        app:layout_constraintTop_toBottomOf="@+id/add_new_tree_image_id"
+        tools:layout_editor_absoluteX="1dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tree_name_text_input_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/fragment_margin_left_right"
+            android:layout_marginRight="@dimen/fragment_margin_left_right"
+            android:gravity="center_vertical"
+            android:hint="@string/tree_name" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/fragment_margin_left_right"
+        android:layout_marginRight="@dimen/fragment_margin_left_right"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/text_input_round_corners"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
+        tools:layout_editor_absoluteX="0dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tree_species_text_input_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/fragment_margin_left_right"
+            android:layout_marginRight="@dimen/fragment_margin_left_right"
+            android:gravity="center_vertical"
+            android:hint="@string/tree_species" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/fragment_margin_left_right"
+        android:layout_marginRight="@dimen/fragment_margin_left_right"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/text_input_round_corners"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout2"
+        tools:layout_editor_absoluteX="16dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/no_of_trees__text_input_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/fragment_margin_left_right"
+            android:layout_marginRight="@dimen/fragment_margin_left_right"
+            android:gravity="center_vertical"
+            android:hint="@string/no_of_trees" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/get_area_location_button_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/fragment_margin_left_right"
+        android:layout_marginTop="47dp"
+        android:layout_marginRight="@dimen/fragment_margin_left_right"
+        android:background="@drawable/button_round_corners_background"
+        android:text="@string/get_area_location"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout3" />
+</androidx.constraintlayout.widget.ConstraintLayout>
