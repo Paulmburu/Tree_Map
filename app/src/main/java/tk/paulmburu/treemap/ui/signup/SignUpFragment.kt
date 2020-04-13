@@ -1,4 +1,4 @@
-package tk.paulmburu.treemap.ui
+package tk.paulmburu.treemap.ui.signup
 
 
 import android.os.Bundle
@@ -11,14 +11,14 @@ import tk.paulmburu.treemap.R
 /**
  * A simple [Fragment] subclass.
  */
-class TreeFragment : Fragment() {
+class SignUpFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tree, container, false)
+        return inflater.inflate(R.layout.fragment_sign_up, container, false)
     }
 
 

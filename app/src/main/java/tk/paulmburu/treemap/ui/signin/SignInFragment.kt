@@ -1,4 +1,4 @@
-package tk.paulmburu.treemap.ui
+package tk.paulmburu.treemap.ui.signin
 
 
 import android.os.Bundle
