@@ -13,6 +13,7 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
+        vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -48,6 +49,9 @@ dependencies {
 
     //material design dependency
     implementation 'com.google.android.material:material:1.2.0-alpha04'
+
+    //Circle Imageview
+    implementation "de.hdodenhof:circleimageview:3.1.0"
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.android.gms:play-services-maps:16.1.0'
