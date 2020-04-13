@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@+id/mapsActivity">
+    app:startDestination="@id/mapsFragment">
 
     <fragment
         android:id="@+id/mainFragment"
@@ -12,32 +12,32 @@
         tools:layout="@layout/fragment_content_main" />
     <fragment
         android:id="@+id/splashScreenFragment"
-        android:name="tk.paulmburu.treemap.SplashScreenFragment"
+        android:name="tk.paulmburu.treemap.ui.splashScreen.SplashScreenFragment"
         android:label="fragment_splash_screen"
         tools:layout="@layout/fragment_splash_screen" />
     <fragment
         android:id="@+id/signInFragment"
-        android:name="tk.paulmburu.treemap.ui.SignInFragment"
+        android:name="tk.paulmburu.treemap.ui.signin.SignInFragment"
         android:label="fragment_sign_in"
         tools:layout="@layout/fragment_sign_in" />
     <fragment
         android:id="@+id/signUpFragment"
-        android:name="tk.paulmburu.treemap.ui.SignUpFragment"
+        android:name="tk.paulmburu.treemap.ui.signup.SignUpFragment"
         android:label="fragment_sign_up"
         tools:layout="@layout/fragment_sign_up" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="tk.paulmburu.treemap.ui.ProfileFragment"
+        android:name="tk.paulmburu.treemap.ui.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/treeFragment"
-        android:name="tk.paulmburu.treemap.ui.TreeFragment"
+        android:name="tk.paulmburu.treemap.ui.tree.TreeFragment"
         android:label="fragment_tree"
         tools:layout="@layout/fragment_tree" />
     <fragment
         android:id="@+id/treeImageFragment"
-        android:name="tk.paulmburu.treemap.ui.TreeImageFragment"
+        android:name="tk.paulmburu.treemap.ui.treeimage.TreeImageFragment"
         android:label="fragment_tree_image"
         tools:layout="@layout/fragment_tree_image" />
     <activity
@@ -47,7 +47,16 @@
         tools:layout="@layout/activity_maps" />
     <fragment
         android:id="@+id/mapsFragment"
-        android:name="tk.paulmburu.treemap.MapsFragment"
+        android:name="tk.paulmburu.treemap.ui.maps.MapsFragment"
         android:label="fragment_maps"
-        tools:layout="@layout/fragment_maps" />
+        tools:layout="@layout/fragment_maps" >
+        <action
+            android:id="@+id/action_mapsFragment_to_treeFragment"
+            app:destination="@id/treeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="tk.paulmburu.treemap.ui.settings.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
 </navigation>
