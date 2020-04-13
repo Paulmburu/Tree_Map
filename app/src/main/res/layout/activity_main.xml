@@ -9,44 +9,9 @@
             android:layout_height="match_parent"
             android:theme="@style/AppTheme">
 
-            <LinearLayout
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-<!--                <androidx.appcompat.widget.Toolbar-->
-<!--                    android:id="@+id/my_toolbar"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="?attr/actionBarSize"-->
-<!--                    android:background="?attr/colorPrimary"-->
-<!--                    android:elevation="4dp"-->
-<!--                    android:theme="@style/ThemeOverlay.AppCompat.ActionBar"-->
-<!--                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />-->
-
-<!--                <com.google.android.material.appbar.AppBarLayout-->
-<!--                    style="@style/Widget.MaterialComponents.AppBarLayout.Primary"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginLeft="@dimen/fragment_margin_left_right"-->
-<!--                    android:layout_marginTop="8dp"-->
-<!--                    android:layout_marginRight="@dimen/fragment_margin_left_right"-->
-<!--                    android:background="@drawable/round_corner_appbar"-->
-<!--                    app:layout_constraintEnd_toEndOf="parent"-->
-<!--                    app:layout_constraintStart_toStartOf="parent"-->
-<!--                    app:layout_constraintTop_toTopOf="parent">-->
-
-<!--                    <androidx.appcompat.widget.Toolbar-->
-<!--                        android:id="@+id/my_toolbar"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="match_parent"-->
-<!--                        style="@style/Widget.AppCompat.Toolbar"-->
-<!--                        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"-->
-<!--                        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">-->
-
-<!--                    </androidx.appcompat.widget.Toolbar>-->
-
-<!--                </com.google.android.material.appbar.AppBarLayout>-->
-
+                android:layout_height="match_parent">
 
                 <fragment
                     android:id="@+id/myNavHostFragment"
@@ -56,7 +21,16 @@
                     app:defaultNavHost="true"
                     app:navGraph="@navigation/navigation" />
 
-            </LinearLayout>
+                <com.google.android.material.bottomnavigation.BottomNavigationView
+                    android:id="@+id/bottom_navigation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:background="@android:color/white"
+                    app:menu="@menu/bottom_nav_menu" />
+
+
+            </FrameLayout>
 
             <com.google.android.material.navigation.NavigationView
                 android:id="@+id/navView"

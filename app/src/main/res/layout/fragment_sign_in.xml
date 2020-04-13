@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.SignInFragment">
+    android:background="@android:color/white"
+    tools:context=".ui.signin.SignInFragment">
 
 
     <LinearLayout
@@ -107,7 +108,7 @@
         android:layout_marginLeft="@dimen/fragment_margin_left_right"
         android:layout_marginTop="42dp"
         android:layout_marginRight="@dimen/fragment_margin_left_right"
-        android:background="@drawable/button_round_corners_background"
+        android:background="@drawable/button_round_corners"
         android:text="@string/sign_in"
         android:textColor="@android:color/white"
         android:textSize="24sp"

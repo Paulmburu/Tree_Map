@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/undraw_photo_session_clqr"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.TreeImageFragment">
+    tools:context=".ui.treeimage.TreeImageFragment">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"

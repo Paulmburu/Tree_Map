@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.TreeFragment">
+    tools:context=".ui.tree.TreeFragment">
 
 
     <Button
@@ -14,7 +14,7 @@
         android:layout_marginLeft="@dimen/fragment_margin_left_right"
         android:layout_marginTop="24dp"
         android:layout_marginRight="@dimen/fragment_margin_left_right"
-        android:background="@drawable/button_round_corners_background"
+        android:background="@drawable/button_round_corners"
         android:text="@string/submit_text"
         android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
@@ -119,7 +119,7 @@
         android:layout_marginLeft="@dimen/fragment_margin_left_right"
         android:layout_marginTop="47dp"
         android:layout_marginRight="@dimen/fragment_margin_left_right"
-        android:background="@drawable/button_round_corners_background"
+        android:background="@drawable/button_round_corners"
         android:text="@string/get_area_location"
         android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"

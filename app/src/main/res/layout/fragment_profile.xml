@@ -4,19 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.ProfileFragment">
+    android:background="@android:color/white"
+    tools:context=".ui.profile.ProfileFragment">
 
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <ImageView
         android:id="@+id/profile_image_fab_button_id"
-        style="@style/Widget.MaterialComponents.FloatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="155dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="156dp"
         android:clickable="true"
         android:src="@drawable/icons8_plus_150"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+        android:theme="@style/MyMaterialComponents"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -56,12 +58,12 @@
         android:id="@+id/profile_username_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:layout_marginRight="@dimen/fragment_margin_left_right"
         android:layout_marginLeft="@dimen/fragment_margin_left_right"
-        android:layout_marginTop="70dp"
-        android:background="@drawable/text_input_round_corners"
-        app:layout_constraintTop_toBottomOf="@+id/planted_trees_id"
-        tools:layout_editor_absoluteX="1dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/planted_trees_id">
 
         <com.google.android.material.textfield.TextInputEditText
 
@@ -76,12 +78,12 @@
         android:id="@+id/profile_email_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/fragment_margin_left_right"
+        android:layout_marginTop="8dp"
         android:layout_marginLeft="@dimen/fragment_margin_left_right"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/text_input_round_corners"
-        app:layout_constraintTop_toBottomOf="@+id/profile_username_id"
-        tools:layout_editor_absoluteX="16dp">
+        android:layout_marginRight="@dimen/fragment_margin_left_right"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_username_id">
 
         <com.google.android.material.textfield.TextInputEditText
 
@@ -97,9 +99,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/fragment_margin_left_right"
+        android:layout_marginTop="8dp"
         android:layout_marginRight="@dimen/fragment_margin_left_right"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/text_input_round_corners"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_email_id">
@@ -117,12 +118,13 @@
         android:id="@+id/profile_save_button_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/fragment_margin_left_right"
-        android:layout_marginRight="@dimen/fragment_margin_left_right"
-        android:layout_marginTop="60dp"
-        android:background="@drawable/button_round_corners_background"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/button_round_corners"
         android:text="@string/save_text"
         android:textColor="@android:color/white"
-        app:layout_constraintTop_toBottomOf="@+id/profile_phonenumber_id"
-        tools:layout_editor_absoluteX="161dp" />
+        android:layout_marginRight="18dp"
+        android:layout_marginLeft="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_phonenumber_id" />
 </androidx.constraintlayout.widget.ConstraintLayout>
