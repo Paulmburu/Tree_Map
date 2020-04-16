@@ -2,9 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/already_have_account_sign_in_id"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
     tools:context=".ui.signin.SignInFragment">
 
 
@@ -17,118 +17,116 @@
         android:weightSum="3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/icons8_oak_tree_100" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="@string/tree_tv"
-            android:textColor="#4CAF50"
-            android:textSize="50sp" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:text="@string/map_tv"
-            android:textSize="50sp" />
-
-    </LinearLayout>
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
-        android:id="@+id/welcome_back"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:layout_width="211dp"
+        android:layout_height="111dp"
         android:layout_marginLeft="@dimen/fragment_margin_left_right"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="28dp"
         android:layout_marginRight="@dimen/fragment_margin_left_right"
+        android:fontFamily="@font/nunito"
         android:gravity="center_horizontal"
-        android:text="@string/welcome_back"
-        android:textColor="#4CAF50"
-        android:textSize="24sp"
+        android:text="welcome Back!"
+        android:textAlignment="viewStart"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#228b22"
+        android:textSize="35sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.189"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Welcome Back!" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/text_input_layout_username"
+        android:id="@+id/textinput_password_signup_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/fragment_margin_left_right"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="@dimen/fragment_margin_left_right"
-        android:background="@drawable/text_input_round_corners"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/welcome_back">
+        app:layout_constraintTop_toBottomOf="@+id/text_input_username_singup_id">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/username_textinput_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/fragment_margin_left_right"
             android:layout_marginRight="@dimen/fragment_margin_left_right"
-            android:hint="Username"
-            android:textSize="18sp" />
+            android:fontFamily="@font/nunito"
+            android:hint="@string/Password_tv"
+            android:textColor="#484545" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/text_input_layout_password"
+        android:id="@+id/text_input_username_singup_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/fragment_margin_left_right"
-        android:layout_marginTop="24dp"
         android:layout_marginRight="@dimen/fragment_margin_left_right"
-        android:background="@drawable/text_input_round_corners"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_input_layout_username">
+        app:layout_constraintTop_toBottomOf="@+id/imageView2">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/fragment_margin_left_right"
             android:layout_marginRight="@dimen/fragment_margin_left_right"
-            android:hint="Password" />
+            android:fontFamily="@font/nunito"
+            android:hint="@string/username_tv"
+            android:textColor="#484545" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/sign_in_button_id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/sign_up_button_id"
+        android:layout_width="148dp"
+        android:layout_height="39dp"
         android:layout_marginLeft="@dimen/fragment_margin_left_right"
-        android:layout_marginTop="42dp"
+        android:layout_marginTop="68dp"
         android:layout_marginRight="@dimen/fragment_margin_left_right"
         android:background="@drawable/button_round_corners"
-        android:text="@string/sign_in"
+        android:fontFamily="@font/nunito_semibold"
+        android:text="@string/sign_up"
         android:textColor="@android:color/white"
-        android:textSize="24sp"
+        android:textSize="18sp"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_input_layout_password" />
+        app:layout_constraintTop_toBottomOf="@+id/textinput_password_signup_id"
+        tools:visibility="visible" />
 
     <TextView
-        android:id="@+id/new_here_sign_up_tv_id"
+        android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
+        android:layout_marginBottom="16dp"
         android:gravity="center_horizontal"
-        android:text=" New Here ? Sign Up"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/colorMain"
-        android:textSize="18sp"
+        android:text="Don't have an account? Sign up!"
+        android:textColor="@color/darkGreen"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sign_in_button_id" />
+        app:layout_constraintTop_toBottomOf="@+id/sign_up_button_id"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="270dp"
+        android:layout_height="248dp"
+        android:layout_marginTop="76dp"
+        android:src="@drawable/loginpic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/linearLayout" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
