@@ -7,5 +7,6 @@
     <color name="colorMain">#4CAF50</color>
 
     <color name="colorText">#424242</color>
+    <color name="darkGreen">#228B22</color>
 
 </resources>
