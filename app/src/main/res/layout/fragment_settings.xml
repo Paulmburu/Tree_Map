@@ -260,7 +260,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="@android:string/fingerprint_icon_content_description"
+            android:text="Fingerprint"
             android:textColor="@color/colorText"
             app:layout_constraintBottom_toBottomOf="@+id/imageButton11"
             app:layout_constraintStart_toEndOf="@+id/imageButton11"
