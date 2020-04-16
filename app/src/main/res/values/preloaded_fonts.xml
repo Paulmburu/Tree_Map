@@ -2,8 +2,11 @@
 <resources>
     <array name="preloaded_fonts" translatable="false">
         <item>@font/nunito</item>
+<<<<<<< HEAD
         <item>@font/nunito_black</item>
         <item>@font/nunito_bold</item>
+=======
+>>>>>>> f1ad0e68a6b4d7cdce740afd16f2f09775af613b
         <item>@font/nunito_semibold</item>
     </array>
 </resources>
