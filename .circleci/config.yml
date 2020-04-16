@@ -10,16 +10,17 @@ jobs:
       - checkout
       - restore_cache:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
-
+      - run: sdkmanager --install "ndk-bundle"
+      - run: sdkmanager --licenses
       - run:
           name: Chmod permissions #if permission for Gradlew Dependencies fail, use this.
           command: sudo chmod +x ./gradlew
       - run:
           name: Download Dependencies
           command: ./gradlew androidDependencies
-      - run:
-          name: Approve license for build tools # Error in absence
-          command: (echo y; echo y; echo y; echo y; echo y; echo y) | $ANDROID_HOME/tools/bin/sdkmanager --licenses
+#      - run:
+#          name: Approve license for build tools # Error in absence
+#          command: (echo y; echo y; echo y; echo y; echo y; echo y) | $ANDROID_HOME/tools/bin/sdkmanager --licenses
       - save_cache:
           paths:
             - ~/.gradle
