@@ -230,8 +230,8 @@
         android:text="Settings"
         android:textColor="@color/darkGreen"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/mk_img_setting"
-        app:layout_constraintTop_toBottomOf="@+id/mk_img_setting" />
+        app:layout_constraintStart_toStartOf="@+id/user_image_view_id"
+        app:layout_constraintTop_toBottomOf="@+id/user_image_view_id" />
 
     <ImageButton
         android:id="@+id/mk_help_btn_settings"
@@ -305,7 +305,7 @@
         app:layout_constraintTop_toTopOf="@+id/imageButton14" />
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/mk_img_setting"
+        android:id="@+id/user_image_view_id"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:layout_marginStart="16dp"
@@ -326,8 +326,8 @@
         android:text="Jon Doe"
         android:textColor="@color/colorText"
         android:textSize="15sp"
-        app:layout_constraintStart_toEndOf="@+id/mk_img_setting"
-        app:layout_constraintTop_toTopOf="@+id/mk_img_setting" />
+        app:layout_constraintStart_toEndOf="@+id/user_image_view_id"
+        app:layout_constraintTop_toTopOf="@+id/user_image_view_id" />
 
 
     <TextView
@@ -339,7 +339,7 @@
         android:fontFamily="@font/nunito"
         android:text="Jondoe@gmail.com"
         android:textColor="@color/colorText"
-        app:layout_constraintBottom_toBottomOf="@+id/mk_img_setting"
+        app:layout_constraintBottom_toBottomOf="@+id/user_image_view_id"
         app:layout_constraintStart_toStartOf="@+id/mk_name_settings"
         app:layout_constraintTop_toBottomOf="@+id/mk_name_settings"
         app:layout_constraintVertical_bias="0.272" />
