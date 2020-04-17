@@ -299,8 +299,8 @@
             android:text="Settings"
             android:textColor="@color/colorText"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/mk_img_setting"
-            app:layout_constraintTop_toBottomOf="@+id/mk_img_setting" />
+            app:layout_constraintStart_toStartOf="@+id/user_image_view_id"
+            app:layout_constraintTop_toBottomOf="@+id/user_image_view_id" />
 
         <View
             android:id="@+id/view"
@@ -385,7 +385,7 @@
             app:layout_constraintTop_toTopOf="@+id/imageButton14" />
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/mk_img_setting"
+            android:id="@+id/user_image_view_id"
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:layout_marginStart="16dp"
@@ -405,8 +405,8 @@
             android:layout_marginTop="8dp"
             android:text="Paul Mburu"
             android:textColor="@color/colorText"
-            app:layout_constraintStart_toEndOf="@+id/mk_img_setting"
-            app:layout_constraintTop_toTopOf="@+id/mk_img_setting" />
+            app:layout_constraintStart_toEndOf="@+id/user_image_view_id"
+            app:layout_constraintTop_toTopOf="@+id/user_image_view_id" />
 
 
         <TextView
@@ -417,7 +417,7 @@
             android:layout_marginBottom="16dp"
             android:text="paulmburu53@gmail.com"
             android:textColor="@color/colorText"
-            app:layout_constraintBottom_toBottomOf="@+id/mk_img_setting"
+            app:layout_constraintBottom_toBottomOf="@+id/user_image_view_id"
             app:layout_constraintStart_toStartOf="@+id/mk_name_settings"
             app:layout_constraintTop_toBottomOf="@+id/mk_name_settings"
             app:layout_constraintVertical_bias="0.0" />
