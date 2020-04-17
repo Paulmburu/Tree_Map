@@ -7,124 +7,163 @@
     android:background="@android:color/white"
     tools:context=".ui.profile.ProfileFragment">
 
-
-    <ImageView
-        android:id="@+id/profile_image_fab_button_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="155dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="156dp"
-        android:clickable="true"
-        android:src="@drawable/icons8_plus_150"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
-        android:theme="@style/MyMaterialComponents"
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/user_image_view_id"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/me"
+        app:civ_border_color="@color/colorPrimary"
+        app:civ_border_width="1dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:id="@+id/planted_trees_id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/fragment_margin_left_right"
-        android:layout_marginRight="@dimen/fragment_margin_left_right"
-        android:layout_marginTop="16dp"
-        android:orientation="horizontal"
-        android:weightSum="2"
-        app:layout_constraintTop_toBottomOf="@+id/profile_image_fab_button_id"
-        tools:layout_editor_absoluteX="16dp">
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="103dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="64dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="10dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintEnd_toEndOf="@+id/user_image_view_id"
+        app:layout_constraintHorizontal_bias="0.571"
+        app:layout_constraintStart_toStartOf="@+id/user_image_view_id"
+        app:layout_constraintTop_toTopOf="@+id/user_image_view_id">
 
-        <TextView
-            android:id="@+id/planted_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="end"
-            android:text="Planted:"
-            android:textSize="24sp" />
-
-        <TextView
-            android:id="@+id/number_of_trees_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text=" 24 trees"
-            android:textColor="@color/colorMain"
-            android:textSize="24sp" />
-    </LinearLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/profile_username_id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginRight="@dimen/fragment_margin_left_right"
-        android:layout_marginLeft="@dimen/fragment_margin_left_right"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/planted_trees_id">
-
-        <com.google.android.material.textfield.TextInputEditText
-
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/fragment_margin_left_right"
-            android:layout_marginRight="@dimen/fragment_margin_left_right"
-            android:hint="@string/username_tv" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="match_parent">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/profile_email_id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="8dp"
+                android:src="@drawable/icons8_tree_256"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/user_planted_trees_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="43"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintTop_toTopOf="@+id/imageView"
+                app:layout_constraintVertical_bias="0.0" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="407dp"
+        android:layout_height="214dp"
         android:layout_marginTop="8dp"
-        android:layout_marginLeft="@dimen/fragment_margin_left_right"
-        android:layout_marginRight="@dimen/fragment_margin_left_right"
+        android:src="@drawable/undraw_growing"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_username_id">
+        app:layout_constraintTop_toBottomOf="@+id/user_name_id" />
 
-        <com.google.android.material.textfield.TextInputEditText
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/fragment_margin_left_right"
-            android:layout_marginRight="@dimen/fragment_margin_left_right"
-            android:hint="@string/email_text" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/profile_phonenumber_id"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/user_name_id"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/fragment_margin_left_right"
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="@dimen/fragment_margin_left_right"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_email_id">
+        android:layout_marginTop="64dp"
+        android:fontFamily="@font/nunito_black"
+        android:text="John Doe"
+        app:layout_constraintEnd_toEndOf="@+id/cardView"
+        app:layout_constraintStart_toStartOf="@+id/cardView"
+        app:layout_constraintTop_toTopOf="@+id/cardView" />
 
-        <com.google.android.material.textfield.TextInputEditText
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/fragment_margin_left_right"
-            android:layout_marginRight="@dimen/fragment_margin_left_right"
-            android:hint="@string/phone_number" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <Button
-        android:id="@+id/profile_save_button_id"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/details_tv"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
-        android:background="@drawable/button_round_corners"
-        android:text="@string/save_text"
-        android:textColor="@android:color/white"
-        android:layout_marginRight="18dp"
-        android:layout_marginLeft="18dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_phonenumber_id" />
+        android:fontFamily="@font/nunito_black"
+        android:text="Details"
+        app:layout_constraintStart_toStartOf="@+id/imageView3"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+    <TextView
+        android:id="@+id/areas_covered"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/nunito_bold"
+        android:text="Areas covered : "
+        app:layout_constraintStart_toStartOf="@+id/details_tv"
+        app:layout_constraintTop_toBottomOf="@+id/details_tv" />
+
+    <TextView
+        android:id="@+id/areas_covered_tv_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nunito_semibold"
+        android:text="Taita, Busia, Nairobi"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="@+id/areas_covered"
+        app:layout_constraintStart_toEndOf="@+id/areas_covered"
+        app:layout_constraintTop_toTopOf="@+id/areas_covered" />
+
+    <TextView
+        android:id="@+id/total_trees_planted"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/nunito_bold"
+        android:text="Total trees planted : "
+        app:layout_constraintStart_toStartOf="@+id/areas_covered"
+        app:layout_constraintTop_toBottomOf="@+id/areas_covered" />
+
+    <TextView
+        android:id="@+id/total_trees_planted_tv_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nunito_semibold"
+        android:text="43"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="@+id/total_trees_planted"
+        app:layout_constraintStart_toEndOf="@+id/total_trees_planted"
+        app:layout_constraintTop_toTopOf="@+id/total_trees_planted" />
+
+    <TextView
+        android:id="@+id/target_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/nunito_bold"
+        android:text="Target : "
+        app:layout_constraintStart_toStartOf="@+id/total_trees_planted"
+        app:layout_constraintTop_toBottomOf="@+id/total_trees_planted" />
+
+    <TextView
+        android:id="@+id/target_tv_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nunito_semibold"
+        android:text="150 trees"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="@+id/target_tv"
+        app:layout_constraintStart_toEndOf="@+id/target_tv"
+        app:layout_constraintTop_toTopOf="@+id/target_tv" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
