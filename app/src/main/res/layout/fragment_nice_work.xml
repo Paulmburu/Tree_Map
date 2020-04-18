@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NiceWorkFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+    <ImageView
+        android:id="@+id/nice_work_iv"
+        android:layout_width="match_parent"
+        android:layout_height="388dp"
+        android:src="@drawable/nice_work"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/nice_work_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nunito_bold"
+        android:text="Nice Work!"
+        android:textColor="@color/colorPrimary"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="@+id/nice_work_iv"
+        app:layout_constraintStart_toStartOf="@+id/nice_work_iv"
+        app:layout_constraintTop_toBottomOf="@+id/nice_work_iv" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/nunito_bold"
+        android:text="Share your achievements with your friends"
+        app:layout_constraintEnd_toEndOf="@+id/nice_work_tv"
+        app:layout_constraintStart_toStartOf="@+id/nice_work_tv"
+        app:layout_constraintTop_toBottomOf="@+id/nice_work_tv" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:srcCompat="@drawable/ic_baseline_share_24"
+        app:layout_constraintBottom_toBottomOf="@+id/textView5"
+        app:layout_constraintStart_toEndOf="@+id/textView5"
+        app:layout_constraintTop_toTopOf="@+id/textView5" />
+
+    <Button
+        android:id="@+id/get_area_location_button_id"
+        android:layout_width="165dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/button_round_corners"
+        android:padding="5dp"
+        android:text="Go to map"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="@+id/nice_work_tv"
+        app:layout_constraintStart_toStartOf="@+id/nice_work_tv"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+</androidx.constraintlayout.widget.ConstraintLayout>

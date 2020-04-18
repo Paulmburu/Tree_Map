@@ -34,7 +34,14 @@
         android:id="@+id/treeFragment"
         android:name="tk.paulmburu.treemap.ui.tree.TreeFragment"
         android:label="fragment_tree"
-        tools:layout="@layout/fragment_tree" />
+        tools:layout="@layout/fragment_tree" >
+        <action
+            android:id="@+id/action_treeFragment_to_niceWorkFragment"
+            app:destination="@id/niceWorkFragment" />
+        <action
+            android:id="@+id/action_treeFragment_to_treeImageFragment"
+            app:destination="@id/treeImageFragment" />
+    </fragment>
     <fragment
         android:id="@+id/treeImageFragment"
         android:name="tk.paulmburu.treemap.ui.treeimage.TreeImageFragment"
@@ -59,4 +66,9 @@
         android:name="tk.paulmburu.treemap.ui.settings.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/niceWorkFragment"
+        android:name="tk.paulmburu.treemap.NiceWorkFragment"
+        android:label="fragment_nice_work"
+        tools:layout="@layout/fragment_nice_work" />
 </navigation>
