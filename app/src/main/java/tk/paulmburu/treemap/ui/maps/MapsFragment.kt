@@ -1,45 +1,60 @@
 package tk.paulmburu.treemap.ui.maps
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.*
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import com.google.android.gms.maps.model.GroundOverlayOptions
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import de.hdodenhof.circleimageview.CircleImageView
+import tk.paulmburu.treemap.MapsActivity
 import tk.paulmburu.treemap.R
+import tk.paulmburu.treemap.databinding.FragmentMapsBinding
 
 /**
  * A simple [Fragment] subclass.
  */
 class MapsFragment : Fragment(), OnMapReadyCallback {
 
-    private lateinit var mMap: GoogleMap
+    private lateinit var map: GoogleMap
+    private lateinit var mapView: MapView
+    private lateinit var fab : FloatingActionButton
+
+
+    private val TAG = MapsFragment::class.java.simpleName
+    private val REQUEST_LOCATION_PERMISSION = 1
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        val binding = FragmentMapsBinding.inflate(inflater)
+        binding.setLifecycleOwner(this)
 
-        view?.findViewById<FloatingActionButton>(R.id.add_new_tree_id)?.setOnClickListener( View.OnClickListener {
-            Toast.makeText(context, " fab", Toast.LENGTH_LONG).show()
-                        it.findNavController().navigate(MapsFragmentDirections.actionMapsFragmentToTreeFragment())
-        })
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-//        val mapFragment = supportFragmentManager
-//            .findFragmentById(R.id.map) as SupportMapFragment
-//        mapFragment.getMapAsync(this)
 
-        return inflater.inflate(R.layout.fragment_maps, container, false)
+        fab = binding.root.findViewById<FloatingActionButton>(R.id.fab)
+        fab.setOnClickListener { view -> Toast.makeText(context,"$TAG", Toast.LENGTH_LONG).show() }
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        mapView = view.findViewById(R.id.map) as MapView
+        mapView.onCreate(savedInstanceState)
+        mapView.onResume()
+        mapView.getMapAsync(this);//when you already implement OnMapReadyCallback in your fragment
     }
 
     /**
@@ -52,16 +67,44 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
      * installed Google Play services and returned to the app.
      */
     override fun onMapReady(googleMap: GoogleMap) {
-        mMap = googleMap
+        map = googleMap
 
-        // Add a marker in Sydney and move the camera
-        val sydney = LatLng(-3.0, 39.0)
-        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Voi"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        // Add a marker in Voi and move the camera
+        val treeLatLon = LatLng(-3.416413, 38.500554)
+        val zoomLevel = 15f
+        map.addMarker(MarkerOptions().position(treeLatLon).title("Marker in Voi").icon(BitmapDescriptorFactory.fromResource(R.drawable.icons8_tree_24)))
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(treeLatLon, zoomLevel))
+
     }
 
-//    fun newTree(view: View){
-//        view.findNavController().navigate(MapsFragmentDirections.actionMapsFragmentToTreeFragment())
-//    }
+    fun enableMyLocation(){
+        if (ActivityCompat.checkSelfPermission(
+                activity!!.parent,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                activity!!.parent,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            ActivityCompat.requestPermissions(
+                activity!!.parent,
+                arrayOf<String>(Manifest.permission.ACCESS_FINE_LOCATION),
+                REQUEST_LOCATION_PERMISSION
+            )
+
+            return
+        }else{
+            map.setMyLocationEnabled(true)
+        }
+
+    }
+
 
 }
