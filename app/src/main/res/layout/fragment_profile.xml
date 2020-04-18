@@ -99,7 +99,7 @@
         android:layout_marginTop="32dp"
         android:fontFamily="@font/nunito_black"
         android:text="Details"
-        app:layout_constraintStart_toStartOf="@+id/imageView3"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
     <TextView

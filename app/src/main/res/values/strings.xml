@@ -17,7 +17,7 @@
     <string name="tree_name">Tree Name</string>
     <string name="tree_species">Tree Species</string>
     <string name="no_of_trees">Number of trees</string>
-    <string name="get_area_location">Get area location</string>
+    <string name="get_area_location">Get geolocation</string>
     <string name="submit_text">Submit</string>
     <string name="phone_number">Phone number</string>
     <string name="save_text">Save</string>
