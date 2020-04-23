@@ -45,7 +45,9 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
 
 
         fab = binding.root.findViewById<FloatingActionButton>(R.id.fab)
-        fab.setOnClickListener { view -> Toast.makeText(context,"$TAG", Toast.LENGTH_LONG).show() }
+        fab.setOnClickListener { view -> Toast.makeText(context,"$TAG", Toast.LENGTH_LONG).show()
+            view.findNavController().navigate(MapsFragmentDirections.actionMapsFragmentToTreeFragment())
+        }
 
         return binding.root
     }
