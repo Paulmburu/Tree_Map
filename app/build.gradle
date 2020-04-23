@@ -10,7 +10,7 @@ android {
     buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "tk.paulmburu.treemap"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -54,11 +54,43 @@ dependencies {
     //Circle Imageview
     implementation "de.hdodenhof:circleimageview:3.1.0"
 
+    //    Dependencies for Moshi
+    implementation "com.squareup.moshi:moshi:$version_moshi"
+    implementation "com.squareup.moshi:moshi-kotlin:$version_moshi"
+
+    implementation "com.squareup.retrofit2:retrofit: $version_retrofit"
+//    implementation "com.squareup.retrofit2:converter-scalars:$version_retrofit"
+    implementation "com.squareup.retrofit2:converter-moshi:$version_retrofit"
+
+//    dependencies for both Coroutines and for the Retrofit Coroutines Adapter
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version_kotlin_coroutines"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version_kotlin_coroutines"
+    implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$version_retrofit_coroutines_adapter"
+
+    //    Glide library dependency
+    implementation "com.github.bumptech.glide:glide:$version_glide"
+
+//    Gradle dependency for the RecyclerView
+    implementation "androidx.recyclerview:recyclerview:$version_recyclerview"
+
+    // Room database
+    implementation "androidx.room:room-runtime:$version_room"
+    implementation 'com.google.firebase:firebase-firestore:17.1.2'
+    kapt "androidx.room:room-compiler:$version_room"
+
+    // WorkManager
+    implementation "android.arch.work:work-runtime-ktx:$version_work"
+
+    // Logging
+    implementation "com.jakewharton.timber:timber:$version_timber"
+
+//    Multidex support prior to Android 5.0
+//    implementation "androidx.multidex:multidex:$multidex_version"
+
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.android.gms:play-services-maps:16.1.0'
     implementation 'com.google.firebase:firebase-database:16.0.4'
     implementation 'com.google.firebase:firebase-core:16.0.4'
-    implementation 'com.google.firebase:firebase-messaging:17.3.4'
     implementation 'com.google.firebase:firebase-auth:16.0.5'
     implementation 'com.google.firebase:firebase-storage:16.0.4'
     testImplementation 'junit:junit:4.12'
