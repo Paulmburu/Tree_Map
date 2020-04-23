@@ -10,21 +10,8 @@
         android:name="tk.paulmburu.treemap.ui.ContentMainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_content_main" />
-    <fragment
-        android:id="@+id/splashScreenFragment"
-        android:name="tk.paulmburu.treemap.ui.splashScreen.SplashScreenFragment"
-        android:label="fragment_splash_screen"
-        tools:layout="@layout/fragment_splash_screen" />
-    <fragment
-        android:id="@+id/signInFragment"
-        android:name="tk.paulmburu.treemap.ui.signin.SignInFragment"
-        android:label="fragment_sign_in"
-        tools:layout="@layout/fragment_sign_in" />
-    <fragment
-        android:id="@+id/signUpFragment"
-        android:name="tk.paulmburu.treemap.ui.signup.SignUpFragment"
-        android:label="fragment_sign_up"
-        tools:layout="@layout/fragment_sign_up" />
+
+
     <fragment
         android:id="@+id/profileFragment"
         android:name="tk.paulmburu.treemap.ui.profile.ProfileFragment"
