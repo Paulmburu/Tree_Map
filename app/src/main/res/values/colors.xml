@@ -12,4 +12,7 @@
     <color name="colorGrayThumbi">#B2B2B2</color>
     <color name="colorDarkThemeThumbi">#292B4C</color>
 
+    <color name="colorError">#E81909</color>
+
+
 </resources>

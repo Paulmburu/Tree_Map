@@ -21,9 +21,11 @@
     <string name="submit_text">Submit</string>
     <string name="phone_number">Phone number</string>
     <string name="save_text">Save</string>
-    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_maps">Tree Map</string>
     <string name="navigation_drawer_open">open drawer</string>
     <string name="navigation_drawer_close">close drawer</string>
+
+    <string name="login_error">Error logging you in. Try again</string>
 
     // satellite titles
     <string name="normal_map">Normal Map</string>
