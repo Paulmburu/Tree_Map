@@ -186,14 +186,15 @@
         android:id="@+id/mk_exit_btn_settings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/nunito"
         android:text="Tree Map"
         android:textColor="@color/colorPrimary"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="647dp" />
+        app:layout_constraintEnd_toEndOf="@+id/view3"
+        app:layout_constraintStart_toStartOf="@+id/view3"
+        app:layout_constraintTop_toBottomOf="@+id/view3" />
 
     <View
         android:id="@+id/view7"
@@ -317,7 +318,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/mk_name_settings"
+        android:id="@+id/user_name_settings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -331,7 +332,7 @@
 
 
     <TextView
-        android:id="@+id/mk_email_settings"
+        android:id="@+id/user_email_settings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -340,8 +341,8 @@
         android:text="Jondoe@gmail.com"
         android:textColor="@color/colorText"
         app:layout_constraintBottom_toBottomOf="@+id/user_image_view_id"
-        app:layout_constraintStart_toStartOf="@+id/mk_name_settings"
-        app:layout_constraintTop_toBottomOf="@+id/mk_name_settings"
+        app:layout_constraintStart_toStartOf="@+id/user_name_settings"
+        app:layout_constraintTop_toBottomOf="@+id/user_name_settings"
         app:layout_constraintVertical_bias="0.272" />
 
     <ImageButton
