@@ -7,8 +7,9 @@ data class Tree constructor(
     val tree_id: String,
     val name: String,
     val tree_image: String,
-    val hero: String,
-    val hero_email: String,
+    val aborist_username: String,
+    val arborist_email: String,
     val tree_geopoint: GeoPoint,
-    val timeStampString: Long
+    val timeStampString: Long,
+    val treeDescription: String
 )
