@@ -56,6 +56,8 @@
                 android:id="@+id/sigin_password_textinput_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="textPassword|numberPassword|textWebPassword"
+                android:password="true"
                 android:layout_marginLeft="@dimen/fragment_margin_left_right"
                 android:layout_marginRight="@dimen/fragment_margin_left_right"
                 android:fontFamily="@font/nunito"

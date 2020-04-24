@@ -22,9 +22,12 @@
             android:textColor="@android:color/white"
             android:textSize="18sp"
             android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/textView3"
+            app:layout_constraintHorizontal_bias="0.494"
             app:layout_constraintStart_toStartOf="@+id/textView3"
             app:layout_constraintTop_toBottomOf="@+id/textView3"
+            app:layout_constraintVertical_bias="0.104"
             tools:visibility="visible" />
 
         <com.google.android.material.textfield.TextInputLayout
@@ -99,6 +102,8 @@
                 android:layout_marginRight="@dimen/fragment_margin_left_right"
                 android:fontFamily="@font/nunito"
                 android:hint="@string/Password_tv"
+                android:inputType="textPassword|numberPassword|textWebPassword"
+                android:password="true"
                 android:textColor="#484545" />
         </com.google.android.material.textfield.TextInputLayout>
 
