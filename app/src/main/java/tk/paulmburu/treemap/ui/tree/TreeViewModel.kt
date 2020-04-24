@@ -11,14 +11,20 @@ import tk.paulmburu.treemap.repository.FirestoreRepository
 
 class TreeViewModel : ViewModel() {
     val TAG = "TREE_VIEW_MODEL"
-    var firebaseRepository = FirestoreRepository()
+    val firebaseRepository = FirestoreRepository()
     var savedTrees : MutableLiveData<List<Tree>> = MutableLiveData()
+    val _navigateToNiceWorkFragment: MutableLiveData<Boolean> = MutableLiveData()
+    val navigaToNiceWorkFragment: LiveData<Boolean>
+        get() = _navigateToNiceWorkFragment
 
     // save address to firebase
-    fun saveTreeToFirebase(newTree: Tree){
-        firebaseRepository.saveNewTree(newTree).addOnFailureListener {
-            Log.e(TAG,"Failed to save Address!")
+    fun saveTreeToFirebase(newTree: Tree, username: String, userEmail: String,treeId: String){
+        firebaseRepository.saveNewArboristTree(newTree,username, userEmail, treeId)
+            .addOnFailureListener {
+            Log.e(TAG,"Failed to save Tree!")
         }
+        firebaseRepository.addNewArboristTreeToGlobalTrees(newTree)
+        _navigateToNiceWorkFragment.value = true
     }
 
     // get realtime updates from firebase regarding saved trees
@@ -46,6 +52,10 @@ class TreeViewModel : ViewModel() {
         firebaseRepository.deleteAddress(tree).addOnFailureListener {
             Log.e(TAG,"Failed to delete Address")
         }
+    }
+
+    fun navigateToNiceWorkFragmentComplete(){
+        _navigateToNiceWorkFragment.value = false
     }
 
 }
