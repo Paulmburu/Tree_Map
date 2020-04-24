@@ -4,6 +4,7 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
+import tk.paulmburu.treemap.models.Arborist
 import tk.paulmburu.treemap.models.Tree
 
 
@@ -13,12 +14,24 @@ class FirestoreRepository {
     var firestoreDB = FirebaseFirestore.getInstance()
 //    var user = FirebaseAuth.getInstance().currentUser
 
+    // save new user to firestore
+    fun createNewArborist(username: String, userEmail: String): Task<Void> {
+        var documentReference = firestoreDB.collection("treemap_arborists").document(username+"_"+userEmail).
+            collection("my_details").document("$username")
+        return documentReference.set(Arborist(username,userEmail,"0","150"))
+    }
 
     // save tree to firebase
-    fun saveNewTree(newTree: Tree): Task<Void> {
+    fun saveNewArboristTree(newTree: Tree, username: String, userEmail: String, treeId: String): Task<Void> {
         //var
-        var documentReference = firestoreDB.collection("trees").document("paulmburu53@gmail.com")
-            .collection("my_trees").document(newTree.tree_id)
+        var documentReference = firestoreDB.collection("treemap_arborists").document(username+"_"+userEmail)
+            .collection("trees_planted").document(treeId)
+        return documentReference.set(newTree)
+    }
+
+    // add tree to global planted trees
+    fun addNewArboristTreeToGlobalTrees(newTree: Tree): Task<Void> {
+        var documentReference = firestoreDB.collection("global_planted_trees").document(System.currentTimeMillis().toString())
         return documentReference.set(newTree)
     }
 
