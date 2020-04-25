@@ -121,12 +121,12 @@
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout2">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/no_of_trees__text_input_id"
+                android:id="@+id/region_text_input_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nunito_bold"
                 android:gravity="center_vertical"
-                android:hint="@string/no_of_trees"
+                android:hint="Region of Country/State/County"
                 android:textSize="14sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
