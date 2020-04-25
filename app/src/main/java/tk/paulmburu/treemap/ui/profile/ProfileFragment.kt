@@ -32,6 +32,11 @@ class ProfileFragment : Fragment() {
         binding.root.findViewById<TextView>(R.id.user_name_id).apply {
             setText(userManager.username)
         }
+
+        userManager.treesPlantedByUser.apply {
+            binding.root.findViewById<TextView>(R.id.user_planted_trees_id).setText(this)
+            binding.root.findViewById<TextView>(R.id.total_trees_planted_tv_id).setText(this)
+        }
         return binding.root
     }
 
