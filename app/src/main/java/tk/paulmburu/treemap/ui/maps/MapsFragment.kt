@@ -3,24 +3,23 @@ package tk.paulmburu.treemap.ui.maps
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
+import tk.paulmburu.treemap.R
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
-import com.google.android.gms.maps.model.GroundOverlayOptions
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import de.hdodenhof.circleimageview.CircleImageView
-import tk.paulmburu.treemap.MapsActivity
-import tk.paulmburu.treemap.R
 import tk.paulmburu.treemap.databinding.FragmentMapsBinding
+import tk.paulmburu.treemap.utils.PermissionUtils
+
 
 /**
  * A simple [Fragment] subclass.
@@ -29,11 +28,11 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
 
     private lateinit var map: GoogleMap
     private lateinit var mapView: MapView
-    private lateinit var fab : FloatingActionButton
+    private lateinit var fab: FloatingActionButton
 
 
     private val TAG = MapsFragment::class.java.simpleName
-    private val REQUEST_LOCATION_PERMISSION = 1
+    private val LOCATION_PERMISSION_REQUEST_CODE = 1
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,8 +44,10 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
 
 
         fab = binding.root.findViewById<FloatingActionButton>(R.id.fab)
-        fab.setOnClickListener { view -> Toast.makeText(context,"$TAG", Toast.LENGTH_LONG).show()
-            view.findNavController().navigate(MapsFragmentDirections.actionMapsFragmentToTreeFragment())
+        fab.setOnClickListener { view ->
+            Toast.makeText(context, "$TAG", Toast.LENGTH_LONG).show()
+            view.findNavController()
+                .navigate(MapsFragmentDirections.actionMapsFragmentToTreeFragment())
         }
 
         return binding.root
@@ -57,6 +58,7 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
         mapView.onCreate(savedInstanceState)
         mapView.onResume()
         mapView.getMapAsync(this);//when you already implement OnMapReadyCallback in your fragment
+
     }
 
     /**
@@ -74,39 +76,55 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
         // Add a marker in Voi and move the camera
         val treeLatLon = LatLng(-3.416413, 38.500554)
         val zoomLevel = 15f
-        map.addMarker(MarkerOptions().position(treeLatLon).title("Marker in Voi").icon(BitmapDescriptorFactory.fromResource(R.drawable.icons8_tree_24)))
+        map.addMarker(
+            MarkerOptions().position(treeLatLon).title("Marker in Voi").icon(
+                BitmapDescriptorFactory.fromResource(R.drawable.icons8_tree_24)
+            )
+        )
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(treeLatLon, zoomLevel))
 
+        enableMyLocation()
     }
 
-    fun enableMyLocation(){
-        if (ActivityCompat.checkSelfPermission(
-                activity!!.parent,
+    fun enableMyLocation() {
+        if (ContextCompat.checkSelfPermission(
+                this.context!!,
                 Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                activity!!.parent,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            ActivityCompat.requestPermissions(
-                activity!!.parent,
-                arrayOf<String>(Manifest.permission.ACCESS_FINE_LOCATION),
-                REQUEST_LOCATION_PERMISSION
             )
-
-            return
-        }else{
-            map.setMyLocationEnabled(true)
+            == PackageManager.PERMISSION_GRANTED
+        ) {
+            if (map != null) {
+                map.setMyLocationEnabled(true);
+            }
+        } else {
+            // Permission to access the location is missing. Show rationale and request permission
+            ActivityCompat.requestPermissions(
+                activity!!,
+                arrayOf<String>(Manifest.permission.ACCESS_FINE_LOCATION),
+                LOCATION_PERMISSION_REQUEST_CODE
+            );
         }
 
     }
 
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String?>,
+        grantResults: IntArray
+    ) {
+        if (requestCode != LOCATION_PERMISSION_REQUEST_CODE) {
+            return
+        }
+        // Check if location permissions are granted and if so enable the
+        // location data layer.
+        if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
+            if (grantResults.size > 0 && (grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                enableMyLocation()
+            } else { // Permission was denied. Display an error message
+// ...
+            }
+        }
 
+
+    }
 }
