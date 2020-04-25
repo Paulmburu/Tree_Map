@@ -6,6 +6,7 @@ import tk.paulmburu.treemap.storage.Storage
 private const val REGISTERED_USER = "registered_user"
 private const val REGISTERED_USER_EMAIL = "registered_user_email"
 private const val PASSWORD_SUFFIX = "password"
+private const val TREES_PLANTED_BY_USER = "trees_planted"
 
 class UserManager(private val storage: Storage) {
     /**
@@ -21,6 +22,9 @@ class UserManager(private val storage: Storage) {
     val userEmail: String
         get() = storage.getString(REGISTERED_USER_EMAIL)
 
+    val treesPlantedByUser: String
+        get() = storage.getString(TREES_PLANTED_BY_USER)
+
     fun isUserLoggedIn() = userDataRepository != null
 
     fun isUserRegistered() = storage.getString(REGISTERED_USER).isNotEmpty()
@@ -29,9 +33,13 @@ class UserManager(private val storage: Storage) {
         storage.setString(REGISTERED_USER,username)
         storage.setString(REGISTERED_USER_EMAIL,userEmail)
         storage.setString("$username$PASSWORD_SUFFIX",password)
+        storage.setString(TREES_PLANTED_BY_USER,"0")
         userJustLoggedIn()
     }
 
+    fun updateTreesPlantedCount(updatedCount: String){
+        storage.setString(TREES_PLANTED_BY_USER,updatedCount)
+    }
     fun loginUser(username: String,userEmail: String, password: String) : Boolean{
         val registeredUser = this.username
         val registeredUserEmail = this.userEmail

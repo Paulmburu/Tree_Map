@@ -52,7 +52,7 @@
         app:layout_constraintTop_toTopOf="@+id/textView5" />
 
     <Button
-        android:id="@+id/get_area_location_button_id"
+        android:id="@+id/get_area_location_loading_button_id"
         android:layout_width="165dp"
         android:layout_height="30dp"
         android:layout_marginTop="24dp"

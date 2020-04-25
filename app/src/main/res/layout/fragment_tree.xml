@@ -5,11 +5,24 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/add_tree_progressbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.tree.TreeFragment">
 
+
+        <Button
+            android:id="@+id/area_location_loading_success_button_id"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/button_round_corners"
+            android:fontFamily="@font/nunito_bold"
+            android:padding="5dp"
+            android:text="Location coordinates success"
+            android:textColor="@android:color/white"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="@+id/textInputLayout3"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout3" />
 
         <Button
             android:id="@+id/submit_new_tree_id"
@@ -23,7 +36,7 @@
             app:layout_constraintEnd_toEndOf="@+id/textInputLayout3"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="@+id/textInputLayout3"
-            app:layout_constraintTop_toBottomOf="@+id/get_area_location_button_id" />
+            app:layout_constraintTop_toBottomOf="@+id/get_area_location_loading_button_id" />
 
         <de.hdodenhof.circleimageview.CircleImageView
 
@@ -118,20 +131,20 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/get_area_location_button_id"
-            android:layout_width="165dp"
+            android:id="@+id/get_area_location_loading_button_id"
+            android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/button_round_corners"
             android:fontFamily="@font/nunito_bold"
             android:padding="5dp"
-            android:text="@string/get_area_location"
+            android:text="Loading location coordinates"
             android:textColor="@android:color/white"
             app:layout_constraintStart_toStartOf="@+id/textInputLayout3"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout3" />
 
         <ProgressBar
-            android:id="@+id/progressBar"
+            android:id="@+id/add_tree_progressbar"
             style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -139,7 +152,7 @@
             android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="@+id/submit_new_tree_id"
             app:layout_constraintStart_toStartOf="@+id/submit_new_tree_id"
-            app:layout_constraintTop_toBottomOf="@+id/get_area_location_button_id" />
+            app:layout_constraintTop_toBottomOf="@+id/get_area_location_loading_button_id" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
