@@ -58,4 +58,13 @@
         android:name="tk.paulmburu.treemap.NiceWorkFragment"
         android:label="fragment_nice_work"
         tools:layout="@layout/fragment_nice_work" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="tk.paulmburu.treemap.ui.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment3_to_treeFragment"
+            app:destination="@id/treeFragment" />
+    </fragment>
 </navigation>
