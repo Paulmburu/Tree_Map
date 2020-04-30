@@ -19,6 +19,9 @@ class UserManager(private val storage: Storage) {
     val username: String
         get() = storage.getString(REGISTERED_USER)
 
+    val password: String
+        get() = storage.getString("$username$PASSWORD_SUFFIX")
+
     val userEmail: String
         get() = storage.getString(REGISTERED_USER_EMAIL)
 
@@ -28,6 +31,11 @@ class UserManager(private val storage: Storage) {
     fun isUserLoggedIn() = userDataRepository != null
 
     fun isUserRegistered() = storage.getString(REGISTERED_USER).isNotEmpty()
+
+    fun changePassword(password: String){
+        storage.setString("$username$PASSWORD_SUFFIX",password)
+    }
+
 
     fun registerUser(username:String, userEmail: String, password: String){
         storage.setString(REGISTERED_USER,username)
