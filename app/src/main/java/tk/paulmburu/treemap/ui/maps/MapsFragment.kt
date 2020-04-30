@@ -3,6 +3,7 @@ package tk.paulmburu.treemap.ui.maps
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,15 +11,21 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
-import tk.paulmburu.treemap.R
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.firestore.QueryDocumentSnapshot
+import tk.paulmburu.treemap.MyApplication
 import tk.paulmburu.treemap.databinding.FragmentMapsBinding
-import tk.paulmburu.treemap.utils.PermissionUtils
+import tk.paulmburu.treemap.R
+import tk.paulmburu.treemap.models.Tree
+import tk.paulmburu.treemap.repository.FirestoreRepository
+import tk.paulmburu.treemap.user.UserManager
+import java.lang.Exception
 
 
 /**
@@ -29,6 +36,9 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
     private lateinit var map: GoogleMap
     private lateinit var mapView: MapView
     private lateinit var fab: FloatingActionButton
+    private lateinit var mapsViewModel: MapsViewModel
+    private lateinit var firebaseRepository: FirestoreRepository
+    private lateinit var userManager: UserManager
 
 
     private val TAG = MapsFragment::class.java.simpleName
@@ -41,7 +51,13 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
         // Inflate the layout for this fragment
         val binding = FragmentMapsBinding.inflate(inflater)
         binding.setLifecycleOwner(this)
+        val application = requireNotNull(this.activity).application
+        userManager = (application as MyApplication).userManager
+//        mapsViewModel = MapsViewModel(application)
+        mapsViewModel = ViewModelProviders.of(this, MapsViewModel.Factory(application))
+            .get(MapsViewModel::class.java)
 
+        firebaseRepository = FirestoreRepository()
 
         fab = binding.root.findViewById<FloatingActionButton>(R.id.fab)
         fab.setOnClickListener { view ->
@@ -73,17 +89,76 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
 
-        // Add a marker in Voi and move the camera
+        // Add a marker in Voi and move the camera = ""
         val treeLatLon = LatLng(-3.416413, 38.500554)
         val zoomLevel = 15f
-        map.addMarker(
-            MarkerOptions().position(treeLatLon).title("Marker in Voi").icon(
-                BitmapDescriptorFactory.fromResource(R.drawable.icons8_tree_24)
-            )
-        )
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(treeLatLon, zoomLevel))
+
+        val mapTres = mapsViewModel._trees
+
+//        map.addMarker(
+//            MarkerOptions().position(treeLatLon).title("Marker in Voi").icon(
+//                BitmapDescriptorFactory.fromResource(R.drawable.icons8_tree_24)
+//            )
+//        )
+//        map.moveCamera(CameraUpdateFactory.newLatLngZoom(treeLatLon, zoomLevel))
+
+        firebaseRepository.getAllGlobalTrees().addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                for (document: QueryDocumentSnapshot in task.result!!) {
+                    val tree = document.toObject(Tree::class.java)
+                            Log.d("BUBA_maps","$tree")
+                    map.addMarker(
+                        MarkerOptions().position(LatLng(tree.tree_geopoint.latitude,tree.tree_geopoint.longitude))
+                            .title(tree.treeDescription)
+                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.icons8_tree_24)
+                    ))
+
+                }
+            }
+
+        }
 
         enableMyLocation()
+    }
+
+    private fun fetchData() { // JSON response
+//        val treesList: List<Tree>? = mapsViewModel._trees.value
+
+        try {
+            // Clear old markers
+            map.clear()
+            // Looping through all info and show on map
+            for (i in 0 until mapsViewModel._trees.value!!.size) {
+                Toast.makeText(activity, "Tree: " + mapsViewModel._trees.value!![i], Toast.LENGTH_LONG).show()
+
+                // Add marker
+                addMarkerToMap(mapsViewModel._trees.value!![i].tree_geopoint.latitude.toString()
+                    , mapsViewModel._trees.value!![i].tree_geopoint.longitude.toString()
+                    , mapsViewModel._trees.value!![i].name
+                    , mapsViewModel._trees.value!![i].treeDescription)
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Toast.makeText(activity, "Error: " + e.message, Toast.LENGTH_LONG).show()
+        }
+    }
+    fun addMarkerToMap(
+        latitude: String,
+        longitude: String,
+        title: String?,
+        description: String?
+    ) {
+        val lat = latitude.toDouble()
+        val lng = longitude.toDouble()
+        // create marker
+        val marker =
+            MarkerOptions().position(LatLng(lat, lng))
+                .title(title)
+                .snippet(description)
+        // Marker icon
+        marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.icons8_tree_24))
+        // Add marker to map
+        map.addMarker(marker)
     }
 
     fun enableMyLocation() {
