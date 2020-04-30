@@ -18,11 +18,14 @@ class TreeViewModel : ViewModel() {
         get() = _navigateToNiceWorkFragment
 
     // save address to firebase
-    fun saveTreeToFirebase(newTree: Tree, username: String, userEmail: String,treeId: String){
+    fun saveTreeToFirebase(newTree: Tree, username: String, userEmail: String,treeId: String, treeRegion: String){
         firebaseRepository.saveNewArboristTree(newTree,username, userEmail, treeId)
             .addOnFailureListener {
             Log.e(TAG,"Failed to save Arborist's Tree!")
         }
+//        firebaseRepository.saveNewArboristTreeRegion(treeRegion,username,userEmail,treeId).addOnFailureListener{
+//            Log.e(TAG,"Failed to save Tree Region!")
+//        }
         firebaseRepository.addNewArboristTreeToGlobalTrees(newTree).addOnFailureListener {
             Log.e(TAG,"Failed to save Tree to Global Trees!")
         }
