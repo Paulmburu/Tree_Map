@@ -28,6 +28,9 @@
         <action
             android:id="@+id/action_treeFragment_to_treeImageFragment"
             app:destination="@id/treeImageFragment" />
+        <action
+            android:id="@+id/action_treeFragment_to_mapsFragment"
+            app:destination="@id/mapsFragment" />
     </fragment>
     <fragment
         android:id="@+id/treeImageFragment"
@@ -57,7 +60,11 @@
         android:id="@+id/niceWorkFragment"
         android:name="tk.paulmburu.treemap.NiceWorkFragment"
         android:label="fragment_nice_work"
-        tools:layout="@layout/fragment_nice_work" />
+        tools:layout="@layout/fragment_nice_work" >
+        <action
+            android:id="@+id/action_niceWorkFragment_to_mapsFragment"
+            app:destination="@id/mapsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/homeFragment"
         android:name="tk.paulmburu.treemap.ui.home.HomeFragment"
