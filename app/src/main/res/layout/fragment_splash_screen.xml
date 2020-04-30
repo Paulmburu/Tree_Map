@@ -26,12 +26,13 @@
 
             <ImageView
                 android:id="@+id/imageView12"
-                android:layout_width="wrap_content"
-                android:layout_height="237dp"
-                android:layout_marginTop="24dp"
+                android:layout_width="396dp"
+                android:layout_height="275dp"
+                android:layout_marginTop="80dp"
                 android:background="#FFFFFF"
                 android:src="@drawable/splash3"
                 app:layout_constraintEnd_toEndOf="@+id/imageView11"
+                app:layout_constraintHorizontal_bias="0.505"
                 app:layout_constraintStart_toStartOf="@+id/imageView11"
                 app:layout_constraintTop_toBottomOf="@+id/imageView11" />
 
@@ -51,8 +52,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/splash2"
-                app:layout_constrainedWidth="true"
                 app:layout_constrainedHeight="true"
+                app:layout_constrainedWidth="true"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
