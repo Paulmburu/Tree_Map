@@ -14,20 +14,18 @@
         <Button
             android:id="@+id/unregister_button_id"
             android:layout_width="137dp"
-            android:layout_height="33dp"
-            android:layout_marginTop="8dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="24dp"
             android:background="@drawable/button_black_round_corners"
             android:fontFamily="@font/nunito_semibold"
+            android:padding="5dp"
             android:text="unregister"
             android:textColor="@android:color/white"
-            android:textSize="18sp"
+            android:textSize="14sp"
             android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/textView3"
-            app:layout_constraintHorizontal_bias="0.494"
-            app:layout_constraintStart_toStartOf="@+id/textView3"
-            app:layout_constraintTop_toBottomOf="@+id/textView3"
-            app:layout_constraintVertical_bias="0.104"
+            app:layout_constraintEnd_toEndOf="@+id/sign_up_text_view"
+            app:layout_constraintStart_toStartOf="@+id/sign_up_text_view"
+            app:layout_constraintTop_toBottomOf="@+id/sign_up_text_view"
             tools:visibility="visible" />
 
         <com.google.android.material.textfield.TextInputLayout
@@ -102,7 +100,7 @@
                 android:layout_marginRight="@dimen/fragment_margin_left_right"
                 android:fontFamily="@font/nunito"
                 android:hint="@string/Password_tv"
-                android:inputType="textPassword|numberPassword|textWebPassword"
+                android:inputType="textPassword"
                 android:password="true"
                 android:textColor="#484545" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -131,15 +129,16 @@
         <Button
             android:id="@+id/sign_in_button_id"
             android:layout_width="148dp"
-            android:layout_height="39dp"
+            android:layout_height="30dp"
             android:layout_marginLeft="@dimen/fragment_margin_left_right"
             android:layout_marginTop="32dp"
             android:layout_marginRight="@dimen/fragment_margin_left_right"
             android:background="@drawable/button_round_corners"
             android:fontFamily="@font/nunito_semibold"
+            android:padding="5dp"
             android:text="@string/sign_in"
             android:textColor="@android:color/white"
-            android:textSize="18sp"
+            android:textSize="14sp"
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -147,7 +146,7 @@
             tools:visibility="visible" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/sign_up_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -161,10 +160,14 @@
 
         <ImageView
             android:id="@+id/imageView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="224dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="4dp"
             android:src="@drawable/loginpic"
+            app:layout_constrainedHeight="true"
+            app:layout_constrainedWidth="true"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.491"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
