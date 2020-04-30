@@ -50,6 +50,9 @@ class SignInFragment : Fragment() {
         errorTextView = binding.root.findViewById(R.id.error_tv_id)
         setupViews()
 
+        binding.root.findViewById<TextView>(R.id.sign_up_text_view).setOnClickListener {
+            findNavController().navigate(SignInFragmentDirections.actionSignInFragmentToSignUpFragment()) }
+
         return binding.root
     }
 
