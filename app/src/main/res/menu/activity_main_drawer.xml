@@ -15,11 +15,6 @@
             android:id="@+id/Donate"
             android:title="Donate" />
         <item
-            android:icon="@drawable/ic_info_outline_24dp"
-            android:id="@+id/About"
-            android:title="About" />
-        <item
-            android:icon="@drawable/ic_exit_to_app_24dp"
             android:id="@+id/logout"
             android:title="Logout" />
 

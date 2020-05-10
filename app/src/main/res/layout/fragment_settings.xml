@@ -9,9 +9,7 @@
         android:layout_height="match_parent"
         app:behavior_peekHeight="?actionBarSize"
         app:layout_behavior="@string/bottom_sheet_behavior">
-        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:behavior_peekHeight="?actionBarSize">
@@ -110,7 +108,7 @@
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
                     android:background="#0D37474F"
-                    app:layout_constraintEnd_toEndOf="@+id/mk_darkmode_switch_settings"
+                    app:layout_constraintEnd_toEndOf="@+id/tm_darkmode_switch_settings"
                     app:layout_constraintStart_toStartOf="@+id/imageButton8"
                     app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
@@ -294,11 +292,11 @@
                     app:layout_constraintTop_toTopOf="@+id/textView20" />
 
                 <Switch
-                    android:id="@+id/mk_darkmode_switch_settings"
+                    android:id="@+id/tm_darkmode_switch_settings"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
-                    android:layout_marginRight="16dp"
+                    android:checked="false"
                     app:layout_constraintBottom_toBottomOf="@+id/textView10"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/textView10" />
