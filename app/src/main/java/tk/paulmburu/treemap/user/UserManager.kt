@@ -7,6 +7,7 @@ private const val REGISTERED_USER = "registered_user"
 private const val REGISTERED_USER_EMAIL = "registered_user_email"
 private const val PASSWORD_SUFFIX = "password"
 private const val TREES_PLANTED_BY_USER = "trees_planted"
+private const val CURRENT_PROFILE_IMAGE = "profile_image"
 
 class UserManager(private val storage: Storage) {
     /**
@@ -28,6 +29,9 @@ class UserManager(private val storage: Storage) {
     val treesPlantedByUser: String
         get() = storage.getString(TREES_PLANTED_BY_USER)
 
+    val currentProfileImageUri: String
+        get() = storage.getString(CURRENT_PROFILE_IMAGE)
+
     fun isUserLoggedIn() = userDataRepository != null
 
     fun isUserRegistered() = storage.getString(REGISTERED_USER).isNotEmpty()
@@ -36,6 +40,9 @@ class UserManager(private val storage: Storage) {
         storage.setString("$username$PASSWORD_SUFFIX",password)
     }
 
+    fun setCurrentProfileImage(currentProfileImageUri: String){
+        storage.setString("$CURRENT_PROFILE_IMAGE",currentProfileImageUri)
+    }
 
     fun registerUser(username:String, userEmail: String, password: String){
         storage.setString(REGISTERED_USER,username)
@@ -71,6 +78,7 @@ class UserManager(private val storage: Storage) {
         storage.setString(REGISTERED_USER,"")
         storage.setString(REGISTERED_USER_EMAIL,"")
         storage.setString("$username$PASSWORD_SUFFIX","")
+        storage.setString("$CURRENT_PROFILE_IMAGE","")
         logout()
     }
 
