@@ -6,15 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.firestore.DocumentChange
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.FirebaseFirestoreSettings
-import com.google.firebase.firestore.MetadataChanges
 import tk.paulmburu.treemap.R
 import tk.paulmburu.treemap.databinding.ArboristItemBinding
 import tk.paulmburu.treemap.databinding.FragmentHomeBinding
@@ -33,10 +31,7 @@ class HomeFragment : Fragment() {
     private var viewModelAdapter: HomeAdapter? = null
     private val TAG = "BUBA_HOME"
 
-    private var db = FirebaseFirestore.getInstance()
-    private val settings = FirebaseFirestoreSettings.Builder()
-        .setPersistenceEnabled(true)
-        .build()
+    private lateinit var loadingImageView: ImageView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,9 +40,25 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         val binding = FragmentHomeBinding.inflate(inflater)
         viewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
-        db.firestoreSettings = settings
+        loadingImageView = binding.root.findViewById(R.id.loading_imageview)
 
-        readData(object : FirebaseCallback {
+        viewModel.loadingDataState.observe(this, Observer {
+            when(it){
+                is Loading -> {
+                    binding.root.findViewById<RecyclerView>(R.id.recyclerViewArborists).visibility = View.INVISIBLE
+                    loadingImageView.visibility = View.VISIBLE
+                }
+                is LoadingDone -> {
+                    loadingImageView.visibility = View.INVISIBLE
+                    binding.root.findViewById<RecyclerView>(R.id.recyclerViewArborists).visibility = View.VISIBLE
+                }
+                is LoadingError -> {
+                    loadingImageView.visibility = View.INVISIBLE
+                }
+            }
+        })
+
+        viewModel.readData(object : FirebaseCallback {
             override fun onCallback(list: List<Tree>) {
                 for(i in 0 until list.size){
                     Log.d("$TAG ->username", "${list[i].aborist_username}")
@@ -98,34 +109,7 @@ class HomeFragment : Fragment() {
             }
         }
     }
-
-    fun readData(firebaseCallback: FirebaseCallback) {
-        db.collection("global_planted_trees")
-            .addSnapshotListener(MetadataChanges.INCLUDE) { querySnapshot, e ->
-                if (e != null) {
-                    Log.w(TAG, "Listen error", e)
-                    return@addSnapshotListener
-                }
-//                querySnapshot.documentChanges.forEach { documentChange -> list.add(documentChange.document.toObject()) }
-
-                for (change in querySnapshot!!.documentChanges) {
-                    if (change.type == DocumentChange.Type.ADDED) {
-                        Log.d(TAG, "New city: ${change.document.data}")
-                        HomeFragment.list.add(change.document.toObject(Tree::class.java))
-                    }
-
-                    val source = if (querySnapshot.metadata.isFromCache)
-                        "local cache"
-                    else
-                        "server"
-//                    Log.d("$TAG", "Data fetched from $source")
-                }
-//                Log.d("$TAG ->list", "${HomeFragment.list}")
-                firebaseCallback.onCallback(list)
-            }
-    }
 }
-
 
 class HomeViewHolder(val viewdataBinding: ArboristItemBinding) :
     RecyclerView.ViewHolder(viewdataBinding.root) {
@@ -136,6 +120,7 @@ class HomeViewHolder(val viewdataBinding: ArboristItemBinding) :
 }
 
 
-interface FirebaseCallback {
-    fun onCallback(list: List<Tree>)
-}
+sealed class LoadingState
+data class Loading(val loading: String): LoadingState()
+data class LoadingDone(val done: String): LoadingState()
+data class LoadingError(val error:String) : LoadingState()
