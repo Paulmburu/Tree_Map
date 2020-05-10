@@ -68,13 +68,13 @@ class SignInFragment : Fragment() {
         val passwordTextInput = binding.root.findViewById<TextInputEditText>(R.id.sigin_password_textinput_id)
         passwordTextInput.doOnTextChanged { _, _, _, _ -> errorTextView.visibility = View.INVISIBLE }
 
-        binding.root.findViewById<Button>(R.id.sign_in_button_id).setOnClickListener { view ->
+        binding.root.findViewById<Button>(R.id.sign_in_button_id).setOnClickListener {
             Log.d(this.toString(), "username := ${signInViewModel.getUsername()}")
             Log.d(this.toString(), "use Email := ${signInViewModel.getUserEmail()}")
             signInViewModel.signin(usernameTextInput.text.toString(), emailTextInput.text.toString(), passwordTextInput.text.toString())
         }
 
-        binding.root.findViewById<Button>(R.id.unregister_button_id).setOnClickListener { view ->
+        binding.root.findViewById<Button>(R.id.unregister_button_id).setOnClickListener {
             signInViewModel.unregister()
 
             findNavController().navigate(SignInFragmentDirections.actionSignInFragmentToSignUpFragment())
