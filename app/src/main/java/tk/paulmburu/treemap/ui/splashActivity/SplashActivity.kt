@@ -3,11 +3,8 @@ package tk.paulmburu.treemap.ui.splashActivity
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
 import tk.paulmburu.treemap.MainActivity
-import tk.paulmburu.treemap.MyApplication
 import tk.paulmburu.treemap.R
-import tk.paulmburu.treemap.user.UserManager
 
 class SplashActivity : AppCompatActivity() {
 

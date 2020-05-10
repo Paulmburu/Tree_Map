@@ -1,10 +1,13 @@
 package tk.paulmburu.treemap.ui.splashActivity
 
+
 import tk.paulmburu.treemap.repository.FirestoreRepository
 import tk.paulmburu.treemap.user.UserManager
 
 class SplashActivityViewModel(private val userManager: UserManager) {
     var firebaseRepository = FirestoreRepository()
+    private val TAG = "BUBA_HOME"
+
 
     private var username: String? = null
     private var userEmail: String? = null
@@ -26,4 +29,6 @@ class SplashActivityViewModel(private val userManager: UserManager) {
         firebaseRepository.createNewArborist(username!!,userEmail!!)
         userManager.registerUser(username!!, userEmail!!, password!!)
     }
+
 }
+

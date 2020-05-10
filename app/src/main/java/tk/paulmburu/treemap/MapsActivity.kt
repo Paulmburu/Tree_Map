@@ -22,8 +22,8 @@ import java.util.*
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     val host: NavHostFragment? by lazy {
-        this?.supportFragmentManager
-            ?.findFragmentById(R.id.myNavHostFragment) as NavHostFragment?
+        this.supportFragmentManager
+            .findFragmentById(R.id.myNavHostFragment) as NavHostFragment?
     }
 
     private lateinit var bottomNavView: BottomNavigationView
@@ -206,7 +206,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private fun isPermissionGranted() : Boolean {
         return ContextCompat.checkSelfPermission(
             this,
-            Manifest.permission.ACCESS_FINE_LOCATION) === PackageManager.PERMISSION_GRANTED
+            Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
     }
 
     private fun enableMyLocation() {

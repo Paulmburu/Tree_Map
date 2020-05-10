@@ -3,7 +3,6 @@ package tk.paulmburu.treemap.ui.maps
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -54,7 +53,7 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
         val application = requireNotNull(this.activity).application
         userManager = (application as MyApplication).userManager
 //        mapsViewModel = MapsViewModel(application)
-        mapsViewModel = ViewModelProviders.of(this, MapsViewModel.Factory(application))
+        mapsViewModel = ViewModelProviders.of(this)
             .get(MapsViewModel::class.java)
 
         firebaseRepository = FirestoreRepository()
@@ -90,10 +89,9 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
         map = googleMap
 
         // Add a marker in Voi and move the camera = ""
-        val treeLatLon = LatLng(-3.416413, 38.500554)
+//        val treeLatLon = LatLng(-3.416413, 38.500554)
         val zoomLevel = 15f
 
-        val mapTres = mapsViewModel._trees
 
 //        map.addMarker(
 //            MarkerOptions().position(treeLatLon).title("Marker in Voi").icon(
@@ -106,7 +104,6 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
             if (task.isSuccessful) {
                 for (document: QueryDocumentSnapshot in task.result!!) {
                     val tree = document.toObject(Tree::class.java)
-                            Log.d("BUBA_maps","$tree")
                     map.addMarker(
                         MarkerOptions().position(LatLng(tree.tree_geopoint.latitude,tree.tree_geopoint.longitude))
                             .title(tree.treeDescription)
@@ -168,9 +165,8 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
             )
             == PackageManager.PERMISSION_GRANTED
         ) {
-            if (map != null) {
                 map.setMyLocationEnabled(true);
-            }
+
         } else {
             // Permission to access the location is missing. Show rationale and request permission
             ActivityCompat.requestPermissions(
