@@ -7,7 +7,6 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -16,6 +15,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import de.hdodenhof.circleimageview.CircleImageView
@@ -30,9 +30,13 @@ import tk.paulmburu.treemap.user.UserManager
  */
 class ProfileFragment : Fragment() {
 
+    private val TAG = "PROFILE_FRAGMENT"
+
     private lateinit var binding: FragmentProfileBinding
     private lateinit var userManager: UserManager
     private lateinit var currentImageUri: String
+    private lateinit var profileImageView: CircleImageView
+    private lateinit var viewModel: ProfileViewModel
 
     private val storage = Firebase.storage
 
@@ -44,7 +48,16 @@ class ProfileFragment : Fragment() {
         binding = FragmentProfileBinding.inflate(inflater)
         val application = requireNotNull(this.activity).application
         userManager = (application as MyApplication).userManager
+        viewModel = ViewModelProviders.of(this,ProfileViewModel.Factory(userManager)).get(ProfileViewModel::class.java)
 
+        profileImageView = binding.root.findViewById<CircleImageView>(R.id.user_image_view_id)
+        profileImageView.setOnClickListener {
+            selectImage(this.context!!)
+        }
+
+        if(userManager.currentProfileImageUri.isNotEmpty()){
+            profileImageView.setImageURI(Uri.parse(userManager.currentProfileImageUri))
+        }
 
         binding.root.findViewById<TextView>(R.id.user_name_id).apply {
             setText(userManager.username)
@@ -55,9 +68,7 @@ class ProfileFragment : Fragment() {
             binding.root.findViewById<TextView>(R.id.total_trees_planted_tv_id).setText(this)
         }
 
-        binding.root.findViewById<CircleImageView>(R.id.user_image_view_id).setOnClickListener {
-//            selectImage()
-        }
+
         return binding.root
     }
 
@@ -76,89 +87,45 @@ class ProfileFragment : Fragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 
-//        if (resultCode == RESULT_OK) {
-//            when (requestCode) {
-//                0 -> if (resultCode === RESULT_OK && R.attr.data != null) {
-//                    val selectedImage = R.attr.data.getExtras().get("data") as Bitmap
-////                    imageView.setImageBitmap(selectedImage)
-//                }
-//                1 -> if (resultCode === RESULT_OK && R.attr.data != null) {
-//                    val selectedImage: Uri = R.attr.data.getData()
-//                    val filePathColumn =
-//                        arrayOf(MediaStore.Images.Media.DATA)
-//                    if (selectedImage != null) {
-//                        val cursor: Cursor = getContentResolver().query(
-//                            selectedImage,
-//                            filePathColumn, null, null, null
-//                        )
-//                        if (cursor != null) {
-//                            cursor.moveToFirst()
-//                            val columnIndex: Int = cursor.getColumnIndex(filePathColumn[0])
-//                            val picturePath: String = cursor.getString(columnIndex)
-//                            imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath))
-//                            cursor.close()
-//                        }
-//                    }
-//                }
-//            }
-//        }
+        if (resultCode == RESULT_OK) {
+            when (requestCode) {
+                0 -> if (resultCode == RESULT_OK && R.attr.data != null) {
+                    val selectedImage = data?.getExtras()?.get("data") as Bitmap
+                    profileImageView.setImageBitmap(selectedImage)
+                }
+                1 -> if (resultCode == RESULT_OK ) {
+                    val selectedImage: Uri = data!!.getData()!!
+                    profileImageView.setImageURI(selectedImage)
+                    userManager.setCurrentProfileImage(selectedImage.toString())
+                    viewModel.uploadUriResult(selectedImage.toString())
+                }
+            }
+        }
 
 
     }
 
     private fun selectImage(context: Context) {
-//        val options =
-//            arrayOf<CharSequence>("Take Photo", "Choose from Gallery", "Cancel")
-//        val builder: AlertDialog.Builder = Builder(context)
-//        builder.setTitle("Choose your profile picture")
-//        builder.setItems(options, DialogInterface.OnClickListener { dialog, item ->
-//            if (options[item] == "Take Photo") {
-//                val takePicture =
-//                    Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-//                startActivityForResult(takePicture, 0)
-//            } else if (options[item] == "Choose from Gallery") {
-//                val pickPhoto = Intent(
-//                    Intent.ACTION_PICK,
-//                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI
-//                )
-//                startActivityForResult(pickPhoto, 1)
-//            } else if (options[item] == "Cancel") {
-//                dialog.dismiss()
-//            }
-//        })
-//        builder.show()
+        val options =
+            arrayOf<CharSequence>("Take Photo", "Choose from Gallery", "Cancel")
+        val builder: AlertDialog.Builder = AlertDialog.Builder(context)
+        builder.setTitle("Choose your profile picture")
+        builder.setItems(options, DialogInterface.OnClickListener { dialog, item ->
+            if (options[item] == "Take Photo") {
+                val takePicture =
+                    Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                startActivityForResult(takePicture, 0)
+            } else if (options[item] == "Choose from Gallery") {
+                val pickPhoto = Intent(
+                    Intent.ACTION_PICK,
+                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+                )
+                startActivityForResult(pickPhoto, 1)
+            } else if (options[item] == "Cancel") {
+                dialog.dismiss()
+            }
+        })
+        builder.show()
     }
 
-    fun result(){
-//        var storageRef = storage.reference
-//
-//        if(requestCode == 1 && resultCode == RESULT_OK){
-//            currentImageUri = data?.data.toString()
-//        }
-//        // File or Blob
-//        val file = Uri.fromFile(File(currentImageUri))
-//
-//        // Create the file metadata
-//        val metadata = storageMetadata {
-//            contentType = "image/jpeg"
-//        }
-//
-//        // Upload file and metadata to the path 'images/mountains.jpg'
-//        var uploadTask = storageRef.child("images/${file.lastPathSegment}").putFile(file, metadata)
-//
-//        // Listen for state changes, errors, and completion of the upload.
-//        uploadTask.addOnProgressListener { taskSnapshot ->
-//            val progress = (100.0 * taskSnapshot.bytesTransferred) / taskSnapshot.totalByteCount
-//            println("Upload is $progress% done")
-//            Log.d("BUBA_PROFILE","Upload is $progress% done")
-//        }.addOnPausedListener {
-//            println("Upload is paused")
-//        }.addOnFailureListener {
-//            // Handle unsuccessful uploads
-//        }.addOnSuccessListener {
-//            // Handle successful uploads on complete
-//            // ...
-//            Log.d("BUBA_PROFILE","DONE")
-//        }
-    }
 }
