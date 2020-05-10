@@ -1,10 +1,12 @@
 package tk.paulmburu.treemap.repository
 
+import androidx.lifecycle.LiveData
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.FirebaseFirestoreSettings
 import com.google.firebase.firestore.QuerySnapshot
 import tk.paulmburu.treemap.models.Arborist
 import tk.paulmburu.treemap.models.Tree
@@ -14,8 +16,16 @@ class FirestoreRepository {
 
     val TAG = "FIREBASE_REPOSITORY"
     var firestoreDB = FirebaseFirestore.getInstance()
-//    var user = FirebaseAuth.getInstance().currentUser
-    
+    private val settings = FirebaseFirestoreSettings.Builder()
+        .setPersistenceEnabled(true)
+        .build();
+
+//    val globalTrees: LiveData
+
+    init {
+        firestoreDB.firestoreSettings = settings
+    }
+
     // save new user to firestore
     fun createNewArborist(username: String, userEmail: String): Task<Void> {
         var documentReference = firestoreDB.collection("treemap_arborists").document(username+"_"+userEmail).
@@ -42,6 +52,10 @@ class FirestoreRepository {
     fun addNewArboristTreeToGlobalTrees(newTree: Tree): Task<Void> {
         var documentReference = firestoreDB.collection("global_planted_trees").document(System.currentTimeMillis().toString())
         return documentReference.set(newTree)
+    }
+
+    fun getAllTrees(): CollectionReference {
+        return firestoreDB.collection("global_planted_trees")
     }
 
      fun getAllGlobalTrees(): Task<QuerySnapshot?>{
