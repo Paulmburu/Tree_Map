@@ -6,15 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Switch
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
-import androidx.navigation.findNavController
 import kotlinx.android.synthetic.main.change_password_dialog.view.*
 import tk.paulmburu.treemap.MyApplication
 import tk.paulmburu.treemap.R
 import tk.paulmburu.treemap.databinding.FragmentSettingsBinding
-import tk.paulmburu.treemap.ui.tree.TreeFragmentDirections
 import tk.paulmburu.treemap.user.UserManager
+import tk.paulmburu.treemap.utils.ThemeHelper
 
 /**
  * A simple [Fragment] subclass.
@@ -40,6 +40,13 @@ class SettingsFragment : Fragment() {
 
         binding.root.findViewById<ImageView>(R.id.tm_password_btn_settings).setOnClickListener {
             changePasswordDialog() 
+        }
+
+        binding.root.findViewById<Switch>(R.id.tm_darkmode_switch_settings).setOnCheckedChangeListener { _, isChecked ->
+            when(isChecked){
+                true -> ThemeHelper.applyTheme("dark")
+                false -> ThemeHelper.applyTheme("light")
+            }
         }
 
         return binding.root
