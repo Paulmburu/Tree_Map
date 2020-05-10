@@ -39,15 +39,41 @@
                 android:textColor="@color/darkGreen"
                 android:textSize="18sp" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewArborists"
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="389dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginRight="16dp"
-                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                tools:listitem="@layout/arborist_item" />
+                android:layout_marginRight="16dp">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewArborists"
+                    android:layout_width="match_parent"
+                    android:layout_height="389dp"
+                    android:visibility="invisible"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:listitem="@layout/arborist_item" />
+
+                <ImageView
+                    android:id="@+id/loading_imageview"
+                    android:layout_width="339dp"
+                    android:layout_height="329dp"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/recyclerViewArborists"
+                    app:layout_constraintTop_toTopOf="@+id/recyclerViewArborists"
+                    app:srcCompat="@drawable/loading_animation" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
         </LinearLayout>
 
     </FrameLayout>
