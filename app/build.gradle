@@ -58,9 +58,6 @@ dependencies {
     implementation "com.squareup.moshi:moshi:$version_moshi"
     implementation "com.squareup.moshi:moshi-kotlin:$version_moshi"
 
-    implementation "com.squareup.retrofit2:retrofit: $version_retrofit"
-//    implementation "com.squareup.retrofit2:converter-scalars:$version_retrofit"
-    implementation "com.squareup.retrofit2:converter-moshi:$version_retrofit"
 
 //    dependencies for both Coroutines and for the Retrofit Coroutines Adapter
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version_kotlin_coroutines"
@@ -74,7 +71,8 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:$version_recyclerview"
 
     // Room database
-    implementation "androidx.room:room-runtime:$version_room"
+//    implementation "androidx.room:room-runtime:$version_room"
+
     implementation 'com.google.firebase:firebase-firestore:17.1.2'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
     kapt "androidx.room:room-compiler:$version_room"
