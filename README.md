@@ -5,7 +5,7 @@ A tree planting android app for all those who love planting trees(Arborists) and
 [TreeMap APK](app/build/outputs/apk/debug/app-debug.apk)
 
 # Demo
-
+``` Credits to :``` [Joseph Githumbi](https://github.com/githumbi) ``` A UI/UX Designer.```
 [![Watch the video](screenshots/DSC_solution_challenge_design_concept.png)](https://youtu.be/deC_NG0g9TM)
 
 # Screenshots
