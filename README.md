@@ -6,6 +6,7 @@ A tree planting android app for all those who love planting trees(Arborists) and
 
 # Demo
 ``` Credits to :``` [Joseph Githumbi](https://github.com/githumbi) ``` A UI/UX Designer.```
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/6727df82fd9c4387a0f866827c18dbcd)](https://app.codacy.com/manual/Paulmburu/Tree_Map?utm_source=github.com&utm_medium=referral&utm_content=Paulmburu/Tree_Map&utm_campaign=Badge_Grade_Dashboard)
 [![Watch the video](screenshots/DSC_solution_challenge_design_concept.png)](https://youtu.be/deC_NG0g9TM)
 
 # Screenshots
