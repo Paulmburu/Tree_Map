@@ -1,21 +1,30 @@
 package tk.paulmburu.treemap.ui.profile
 
 
+import android.Manifest
 import android.app.Activity.RESULT_OK
 import android.app.AlertDialog
+import android.content.ContentResolver
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.database.Cursor
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import de.hdodenhof.circleimageview.CircleImageView
@@ -23,6 +32,8 @@ import tk.paulmburu.treemap.MyApplication
 import tk.paulmburu.treemap.R
 import tk.paulmburu.treemap.databinding.FragmentProfileBinding
 import tk.paulmburu.treemap.user.UserManager
+import tk.paulmburu.treemap.utils.showSnackbar
+import tk.paulmburu.treemap.utils.showToast
 
 
 /**
@@ -31,6 +42,7 @@ import tk.paulmburu.treemap.user.UserManager
 class ProfileFragment : Fragment() {
 
     private val TAG = "PROFILE_FRAGMENT"
+    val READ_STORAGE_PERMISSION_REQUEST_CODE = 2
 
     private lateinit var binding: FragmentProfileBinding
     private lateinit var userManager: UserManager
@@ -48,16 +60,37 @@ class ProfileFragment : Fragment() {
         binding = FragmentProfileBinding.inflate(inflater)
         val application = requireNotNull(this.activity).application
         userManager = (application as MyApplication).userManager
-        viewModel = ViewModelProviders.of(this,ProfileViewModel.Factory(userManager)).get(ProfileViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, ProfileViewModel.Factory(userManager))
+            .get(ProfileViewModel::class.java)
+
+        viewModel.status.observe(viewLifecycleOwner, Observer {
+            when(it){
+                is LoadingProfileImageDone -> {
+                    binding.root.findViewById<ImageView>(R.id.loading_profile_image).visibility = View.INVISIBLE
+                    showSnackbar(binding.root.findViewById(R.id.profile_constraint_layout),"Image uploaded successfully")
+                }
+
+                is LoadingProfileImage -> {
+                    binding.root.findViewById<ImageView>(R.id.loading_profile_image).visibility = View.VISIBLE
+                    showSnackbar(binding.root.findViewById(R.id.profile_constraint_layout),"Upload is at ${it.percentage}%")
+                }
+
+            }
+        })
 
         profileImageView = binding.root.findViewById<CircleImageView>(R.id.user_image_view_id)
         profileImageView.setOnClickListener {
-            selectImage(this.context!!)
+                selectImage(this.context!!)
         }
 
-        if(userManager.currentProfileImageUri.isNotEmpty()){
-            profileImageView.setImageURI(Uri.parse(userManager.currentProfileImageUri))
+        if (userManager.currentProfileImageUri.isNotEmpty()) {
+            checkSelfReadStoragePermission()
+                profileImageView.setImageURI(Uri.parse(userManager.currentProfileImageUri))
+
+
         }
+
+
 
         binding.root.findViewById<TextView>(R.id.user_name_id).apply {
             setText(userManager.username)
@@ -76,7 +109,10 @@ class ProfileFragment : Fragment() {
         var getIntent = Intent(Intent.ACTION_GET_CONTENT)
         getIntent.setType("image/*")
 
-        var pickIntent = Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        var pickIntent = Intent(
+            Intent.ACTION_PICK,
+            android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+        )
         getIntent.setType("image/*")
 
         val chooserIntent = Intent.createChooser(getIntent, "Select Image")
@@ -93,12 +129,15 @@ class ProfileFragment : Fragment() {
                     val selectedImage = data?.getExtras()?.get("data") as Bitmap
                     profileImageView.setImageBitmap(selectedImage)
                 }
-                1 -> if (resultCode == RESULT_OK ) {
+                1 -> if (resultCode == RESULT_OK) {
                     val selectedImage: Uri = data!!.getData()!!
+                    Log.d("PROFILE__","${convertMediaUriToPath(selectedImage)}")
                     profileImageView.setImageURI(selectedImage)
+
                     userManager.setCurrentProfileImage(selectedImage.toString())
-                    viewModel.uploadUriResult(selectedImage.toString())
+                    viewModel.uploadUriResult(this!!.convertMediaUriToPath(selectedImage)!!)
                 }
+
             }
         }
 
@@ -128,4 +167,30 @@ class ProfileFragment : Fragment() {
         builder.show()
     }
 
+
+    private fun checkSelfReadStoragePermission() {
+        if (ActivityCompat.checkSelfPermission(
+                this.context!!,
+                Manifest.permission.READ_EXTERNAL_STORAGE
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            // TODO: Consider calling
+            ActivityCompat.requestPermissions(
+                activity!!,
+                arrayOf<String>(Manifest.permission.READ_EXTERNAL_STORAGE),
+                READ_STORAGE_PERMISSION_REQUEST_CODE
+            );
+
+        }
+    }
+
+    fun convertMediaUriToPath(uri: Uri?): String? {
+        val proj = arrayOf(MediaStore.Images.Media.DATA)
+        val cursor: Cursor = context!!.contentResolver.query(uri!!, proj, null, null, null)!!
+        val column_index: Int = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
+        cursor.moveToFirst()
+        val path: String = cursor.getString(column_index)
+        cursor.close()
+        return path
+    }
 }
