@@ -291,12 +291,13 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/textView20" />
 
-                <Switch
-                    android:id="@+id/tm_darkmode_switch_settings"
+                <ImageButton
+                    android:background="@drawable/ic_baseline_arrow_forward_ios_24"
+                    android:id="@+id/tm_darkmode_settings"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
-                    android:checked="false"
+                    android:layout_marginRight="16dp"
                     app:layout_constraintBottom_toBottomOf="@+id/textView10"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/textView10" />
@@ -394,6 +395,20 @@
                     android:background="@drawable/ic_baseline_brightness_4_24"
                     app:layout_constraintStart_toStartOf="@+id/textView15"
                     app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+                <com.google.android.material.button.MaterialButton
+                    app:icon="@drawable/ic_baseline_input_24"
+                    android:outlineSpotShadowColor="@color/colorMain"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:textAppearance="@style/MaterialButtonTextStyle"
+                    android:id="@+id/signout_button"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:text="Signout"
+                    app:layout_constraintBottom_toBottomOf="@+id/user_email_settings"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/user_name_settings" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView></androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
