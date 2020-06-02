@@ -37,11 +37,6 @@
         android:name="tk.paulmburu.treemap.ui.treeimage.TreeImageFragment"
         android:label="fragment_tree_image"
         tools:layout="@layout/fragment_tree_image" />
-    <activity
-        android:id="@+id/mapsActivity"
-        android:name="tk.paulmburu.treemap.MapsActivity"
-        android:label="activity_maps"
-        tools:layout="@layout/activity_maps" />
     <fragment
         android:id="@+id/mapsFragment"
         android:name="tk.paulmburu.treemap.ui.maps.MapsFragment"
@@ -55,10 +50,14 @@
         android:id="@+id/settingsFragment"
         android:name="tk.paulmburu.treemap.ui.settings.SettingsFragment"
         android:label="fragment_settings"
-        tools:layout="@layout/fragment_settings" />
+        tools:layout="@layout/fragment_settings" >
+        <action
+            android:id="@+id/action_settingsFragment_to_themeSettings"
+            app:destination="@id/themeSettings" />
+    </fragment>
     <fragment
         android:id="@+id/niceWorkFragment"
-        android:name="tk.paulmburu.treemap.NiceWorkFragment"
+        android:name="tk.paulmburu.treemap.ui.niceWork.NiceWorkFragment"
         android:label="fragment_nice_work"
         tools:layout="@layout/fragment_nice_work" >
         <action
@@ -74,4 +73,9 @@
             android:id="@+id/action_homeFragment3_to_treeFragment"
             app:destination="@id/treeFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/themeSettings"
+        android:name="tk.paulmburu.treemap.ui.settings.ThemeSettingsFragment"
+        android:label="fragment_theme_settings"
+        tools:layout="@layout/fragment_theme_settings" />
 </navigation>
