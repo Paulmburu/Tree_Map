@@ -35,6 +35,8 @@
     <string name="lat_long_snippet">Lat: %1$.5f, Long: %2$.5f</string>
     <string name="dropped_pin">Dropped Pin</string>
     <string name="poi">poi</string>
+    <string name="done_loading">DONE</string>
+    <string name="loading">LOADING</string>
 
     <string-array name="language_list">
         <item>English</item>
