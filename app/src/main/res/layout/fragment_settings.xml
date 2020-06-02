@@ -48,7 +48,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:text="Tree Map notifications"
-                    android:textColor="@color/colorText"
                     app:layout_constraintBottom_toBottomOf="@+id/imageButton9"
                     app:layout_constraintStart_toEndOf="@+id/imageButton9"
                     app:layout_constraintTop_toTopOf="@+id/imageButton9" />
@@ -58,25 +57,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:background="@drawable/ic_baseline_outlined_flag_24"
+                    android:background="@drawable/ic_signout"
                     app:layout_constraintStart_toStartOf="@+id/view8"
                     app:layout_constraintTop_toBottomOf="@+id/view8" />
-
-                <ImageButton
-                    android:id="@+id/imageButton12"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:background="@drawable/ic_baseline_lock_24"
-                    app:layout_constraintStart_toStartOf="@+id/textView16"
-                    app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
                 <ImageButton
                     android:id="@+id/imageButton13"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:background="@drawable/ic_baseline_people_outline_24"
+                    android:background="@drawable/ic_community"
                     app:layout_constraintStart_toStartOf="@+id/view3"
                     app:layout_constraintTop_toBottomOf="@+id/view3" />
 
@@ -85,7 +75,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:background="@drawable/ic_baseline_help_24"
+                    android:background="@drawable/ic_help"
                     app:layout_constraintStart_toStartOf="@+id/textView17"
                     app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
@@ -94,7 +84,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:background="@drawable/ic_baseline_add_alert_24"
+                    android:background="@drawable/ic_notifications"
                     app:layout_constraintStart_toStartOf="@+id/textView27"
                     app:layout_constraintTop_toBottomOf="@+id/textView27" />
 
@@ -113,35 +103,22 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
                 <TextView
-                    android:id="@+id/textView16"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="Security"
-                    android:textColor="@color/colorText"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="@+id/view10"
-                    app:layout_constraintTop_toBottomOf="@+id/view10" />
-
-                <TextView
                     android:id="@+id/textView27"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="Notifications"
-                    android:textColor="@color/colorText"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="@+id/view7"
                     app:layout_constraintTop_toBottomOf="@+id/view7" />
 
-                <Spinner
-
-                    android:id="@+id/mk_lang_spinner_settings"
+                <ImageButton
+                    android:background="@drawable/ic_arrow_forward"
+                    android:id="@+id/tm_signout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
-                    android:entries="@array/language_list"
                     android:gravity="end"
                     android:textAlignment="textEnd"
                     app:layout_constraintBottom_toBottomOf="@+id/textView13"
@@ -154,7 +131,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
-                    android:background="@drawable/ic_baseline_arrow_forward_ios_24"
+                    android:background="@drawable/ic_arrow_forward"
                     app:layout_constraintBottom_toBottomOf="@+id/textView21"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/textView21" />
@@ -165,7 +142,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:text="Community"
-                    android:textColor="@color/colorText"
                     app:layout_constraintBottom_toBottomOf="@+id/imageButton13"
                     app:layout_constraintStart_toEndOf="@+id/imageButton13"
                     app:layout_constraintTop_toTopOf="@+id/imageButton13" />
@@ -176,51 +152,24 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="Support"
-                    android:textColor="@color/colorText"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="@+id/view5"
-                    app:layout_constraintTop_toBottomOf="@+id/view5" />
-
-                <ImageButton
-                    android:id="@+id/tm_password_btn_settings"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginRight="16dp"
-                    android:background="@drawable/ic_baseline_arrow_forward_ios_24"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView18"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textView18" />
-
-                <View
-                    android:id="@+id/view5"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginRight="16dp"
-                    android:background="#0D37474F"
-                    app:layout_constraintEnd_toEndOf="@+id/tm_password_btn_settings"
-                    app:layout_constraintStart_toStartOf="@+id/imageButton12"
-                    app:layout_constraintTop_toBottomOf="@+id/textView18" />
+                    app:layout_constraintStart_toStartOf="@+id/view10"
+                    app:layout_constraintTop_toBottomOf="@+id/view10" />
 
                 <TextView
                     android:id="@+id/textView23"
                     android:layout_width="wrap_content"
                     android:layout_height="19dp"
                     android:layout_marginTop="16dp"
-                    android:text="Versão 0.0.1-alpha"
-                    android:textColor="@color/colorText"
+                    android:text="Version 0.0.1-alpha"
                     app:layout_constraintEnd_toEndOf="@+id/mk_exit_btn_settings"
                     app:layout_constraintStart_toStartOf="@+id/mk_exit_btn_settings"
                     app:layout_constraintTop_toBottomOf="@+id/mk_exit_btn_settings" />
 
                 <TextView
                     android:id="@+id/mk_exit_btn_settings"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="61dp"
+                    android:layout_height="19dp"
                     android:layout_marginTop="16dp"
                     android:text="Tree Map"
                     android:textColor="@color/colorPrimary"
@@ -242,18 +191,7 @@
                     android:background="#0D37474F"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/mk_lang_spinner_settings" />
-
-                <TextView
-                    android:id="@+id/textView18"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="Change password"
-                    android:textColor="@color/colorText"
-                    app:layout_constraintBottom_toBottomOf="@+id/imageButton12"
-                    app:layout_constraintStart_toEndOf="@+id/imageButton12"
-                    app:layout_constraintTop_toTopOf="@+id/imageButton12" />
+                    app:layout_constraintTop_toBottomOf="@+id/tm_signout" />
 
                 <TextView
                     android:id="@+id/textView15"
@@ -261,7 +199,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="32dp"
                     android:text="Settings"
-                    android:textColor="@color/colorText"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="@+id/user_image_view_id"
                     app:layout_constraintTop_toBottomOf="@+id/user_image_view_id" />
@@ -286,14 +223,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
-                    android:background="@drawable/ic_baseline_arrow_forward_ios_24"
+                    android:background="@drawable/ic_arrow_forward"
                     app:layout_constraintBottom_toBottomOf="@+id/textView20"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/textView20" />
 
                 <ImageButton
-                    android:background="@drawable/ic_baseline_arrow_forward_ios_24"
-                    android:id="@+id/tm_darkmode_settings"
+                    android:background="@drawable/ic_arrow_forward"
+                    android:id="@+id/tm_apptheme_settings"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
@@ -307,8 +244,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:text="Language"
-                    android:textColor="@color/colorText"
+                    android:text="Signout"
                     app:layout_constraintBottom_toBottomOf="@+id/imageButton10"
                     app:layout_constraintStart_toEndOf="@+id/imageButton10"
                     app:layout_constraintTop_toTopOf="@+id/imageButton10" />
@@ -319,7 +255,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:text="Night mode"
-                    android:textColor="@color/colorText"
                     app:layout_constraintBottom_toBottomOf="@+id/imageButton8"
                     app:layout_constraintStart_toEndOf="@+id/imageButton8"
                     app:layout_constraintTop_toTopOf="@+id/imageButton8" />
@@ -344,7 +279,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:text="Help"
-                    android:textColor="@color/colorText"
                     app:layout_constraintBottom_toBottomOf="@+id/imageButton14"
                     app:layout_constraintStart_toEndOf="@+id/imageButton14"
                     app:layout_constraintTop_toTopOf="@+id/imageButton14" />
@@ -369,7 +303,6 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:text="Paul Mburu"
-                    android:textColor="@color/colorText"
                     app:layout_constraintStart_toEndOf="@+id/user_image_view_id"
                     app:layout_constraintTop_toTopOf="@+id/user_image_view_id" />
 
@@ -381,7 +314,6 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="16dp"
                     android:text="paulmburu53@gmail.com"
-                    android:textColor="@color/colorText"
                     app:layout_constraintBottom_toBottomOf="@+id/user_image_view_id"
                     app:layout_constraintStart_toStartOf="@+id/user_name_settings"
                     app:layout_constraintTop_toBottomOf="@+id/user_name_settings"
@@ -392,23 +324,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:background="@drawable/ic_baseline_brightness_4_24"
+                    android:background="@drawable/ic_brightness"
                     app:layout_constraintStart_toStartOf="@+id/textView15"
                     app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
-                <com.google.android.material.button.MaterialButton
-                    app:icon="@drawable/ic_baseline_input_24"
-                    android:outlineSpotShadowColor="@color/colorMain"
-                    style="?attr/materialButtonOutlinedStyle"
-                    android:textAppearance="@style/MaterialButtonTextStyle"
-                    android:id="@+id/signout_button"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
-                    android:text="Signout"
-                    app:layout_constraintBottom_toBottomOf="@+id/user_email_settings"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/user_name_settings" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView></androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
