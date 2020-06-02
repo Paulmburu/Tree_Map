@@ -96,10 +96,12 @@ dependencies {
     implementation 'com.google.firebase:firebase-database:16.0.4'
     implementation 'com.google.firebase:firebase-core:16.0.4'
     implementation 'com.google.firebase:firebase-auth:17.0.0'
+
     // FirebaseUI Storage only
     implementation 'com.firebaseui:firebase-ui-storage:6.2.0'
-
     implementation 'com.google.firebase:firebase-storage-ktx:19.1.1'
+    implementation 'com.google.firebase:firebase-auth:19.3.1'
+    implementation 'com.firebaseui:firebase-ui-auth:6.2.0'
 
 
     testImplementation 'junit:junit:4.12'
