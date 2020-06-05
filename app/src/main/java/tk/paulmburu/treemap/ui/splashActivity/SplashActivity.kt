@@ -7,7 +7,6 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.fragment.findNavController
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
 import com.google.firebase.auth.FirebaseAuth
@@ -16,9 +15,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import tk.paulmburu.treemap.MainActivity
+import tk.paulmburu.treemap.MyApplication
 import tk.paulmburu.treemap.R
-import tk.paulmburu.treemap.ui.splashScreenFragment.SplashScreenFragmentDirections
 import tk.paulmburu.treemap.utils.AuthenticationState
+import tk.paulmburu.treemap.utils.showSnackbar
 
 class SplashActivity : AppCompatActivity() {
 
@@ -39,28 +39,22 @@ class SplashActivity : AppCompatActivity() {
         viewModel =ViewModelProviders.of(this)[SplashActivityViewModel::class.java]
         mainActivityIntent = Intent(this, MainActivity::class.java)
 
-        viewModel.authenticationState.observe(this, Observer { authenticationState ->
-            when(authenticationState){
-                AuthenticationState.AUTHENTICATED -> {
-                    startActivity(mainActivityIntent)
-                }
-            }
-        })
-
-//        viewModel.authenticationState.observe()
-
         scope.launch {
             delay(1000)
-            launchSignInFlow()
+
+            viewModel.authenticationState.observe(this@SplashActivity, Observer { authenticationState ->
+
+                when(authenticationState){
+                    AuthenticationState.AUTHENTICATED -> {
+                        startActivity(mainActivityIntent)
+                    }
+                    AuthenticationState.UNAUTHENTICATED -> {
+                        launchSignInFlow()
+                    }
+                }
+            })
         }
 
-    }
-    /**
-     * Callback from SignInFragment when username, email and password has been entered
-     */
-    fun onDetailsEntered() {
-        startActivity(mainActivityIntent)
-        finish()
     }
 
     private fun launchSignInFlow() {
