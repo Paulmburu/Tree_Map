@@ -1,34 +1,31 @@
 package tk.paulmburu.treemap.ui.splashActivity
 
 
+import androidx.lifecycle.*
 import tk.paulmburu.treemap.repository.FirestoreRepository
-import tk.paulmburu.treemap.user.UserManager
+import tk.paulmburu.treemap.utils.AuthenticationState
+import tk.paulmburu.treemap.utils.FirebaseUserLiveData
 
-class SplashActivityViewModel(private val userManager: UserManager) {
+
+class SplashActivityViewModel : ViewModel() {
     var firebaseRepository = FirestoreRepository()
-    private val TAG = "BUBA_HOME"
+    private val TAG = "SplashActivityViewModel"
 
-
-    private var username: String? = null
-    private var userEmail: String? = null
-    private var password: String? = null
-
-
-    fun updateUserData(username: String, userEmail: String,password: String) {
-        this.username = username
-        this.userEmail = userEmail
-        this.password = password
-        registerUser()
+    val authenticationState  = Transformations.map(FirebaseUserLiveData()){ user ->
+        if (user != null) {
+            registerUser(user.displayName!!, user.email!!)
+            AuthenticationState.AUTHENTICATED
+        } else {
+            AuthenticationState.UNAUTHENTICATED
+        }
     }
 
-    fun registerUser() {
-        assert(username != null)
-        assert(userEmail != null)
-        assert(password != null)
-
+    fun registerUser(username: String, userEmail: String) {
         firebaseRepository.createNewArborist(username!!,userEmail!!)
-        userManager.registerUser(username!!, userEmail!!, password!!)
     }
+
 
 }
+
+
 
