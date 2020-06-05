@@ -1,20 +1,21 @@
 package tk.paulmburu.treemap.ui.settings
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.Switch
-import android.widget.TextView
-import androidx.appcompat.app.AlertDialog
-import kotlinx.android.synthetic.main.change_password_dialog.view.*
-import tk.paulmburu.treemap.MyApplication
+import android.widget.*
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.findNavController
+import com.firebase.ui.auth.AuthUI
 import tk.paulmburu.treemap.R
 import tk.paulmburu.treemap.databinding.FragmentSettingsBinding
-import tk.paulmburu.treemap.user.UserManager
-import tk.paulmburu.treemap.utils.ThemeHelper
+import tk.paulmburu.treemap.ui.splashActivity.SplashActivity
+import tk.paulmburu.treemap.utils.AuthenticationState
+import tk.paulmburu.treemap.utils.UserInfo
 
 /**
  * A simple [Fragment] subclass.
@@ -22,73 +23,42 @@ import tk.paulmburu.treemap.utils.ThemeHelper
 class SettingsFragment : Fragment() {
 
     private lateinit var binding: FragmentSettingsBinding
-    private lateinit var userManager: UserManager
+    private lateinit var viewModel: SettingsFragmentViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         binding = FragmentSettingsBinding.inflate(inflater)
-        val application = requireNotNull(this.activity).application
-        userManager = (application as MyApplication).userManager
-
-        binding.root.findViewById<TextView>(R.id.user_name_settings)
-            .apply { setText(userManager.username) }
-        binding.root.findViewById<TextView>(R.id.user_email_settings)
-            .apply { setText(userManager.userEmail) }
-
-        binding.root.findViewById<ImageView>(R.id.tm_password_btn_settings).setOnClickListener {
-            changePasswordDialog() 
-        }
-
-        binding.root.findViewById<Switch>(R.id.tm_darkmode_switch_settings).setOnCheckedChangeListener { _, isChecked ->
-            when(isChecked){
-                true -> ThemeHelper.applyTheme("dark")
-                false -> ThemeHelper.applyTheme("light")
-            }
-        }
-
         return binding.root
     }
 
-    fun changePasswordDialog() {
-        //Inflate the dialog with custom view
-        val mDialogView =
-            LayoutInflater.from(this.context).inflate(R.layout.change_password_dialog, null)
-        //AlertDialogBuilder
-        val mBuilder = AlertDialog.Builder(this.context!!)
-            .setView(mDialogView)
-            .setTitle("Confirm Password")
-        //show dialog
-        val mAlertDialog = mBuilder.show()
-        //login button click of custom layout
-        mDialogView.dialog_change_btn.setOnClickListener {
-            //dismiss dialog
-            mAlertDialog.dismiss()
-            //get text from EditTexts of custom layout
-            val oldPassword = mDialogView.dialogOldPasswordEt.text.toString()
-            val newPassword = mDialogView.dialogNewPasswordEt.text.toString()
-            val confirmNewPassword = mDialogView.dialogConfirmNewPasswEt.text.toString()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-            if (oldPassword != userManager.password){
-                mDialogView.errorTv.visibility = View.VISIBLE
-            }else {
-                if(newPassword != confirmNewPassword){
-                    mDialogView.errorTv.apply {
-                        text="New password doesn't match"
-                        visibility = View.VISIBLE
-                    }
-                }else if(newPassword == confirmNewPassword){
-                    userManager.changePassword(newPassword)
+        viewModel = ViewModelProviders.of(this!!.activity!!)[SettingsFragmentViewModel::class.java]
+
+        view.findViewById<TextView>(R.id.user_name_settings)
+            .apply { setText(UserInfo.auth_username) }
+        view.findViewById<TextView>(R.id.user_email_settings)
+            .apply { setText(UserInfo.auth_email) }
+
+        view.findViewById<ImageButton>(R.id.tm_signout).setOnClickListener {
+            AuthUI.getInstance().signOut(this.context!!)
+        }
+
+        viewModel.authenticationState.observe(viewLifecycleOwner, Observer { authenticationState ->
+            when(authenticationState){
+                AuthenticationState.UNAUTHENTICATED -> {
+                    startActivity(Intent(activity,SplashActivity::class.java))
                 }
             }
+        })
 
-            //cancel button click of custom layout
-            mDialogView.dialogCancelBtn.setOnClickListener {
-                //dismiss dialog
-                mAlertDialog.dismiss()
-            }
+        view.findViewById<ImageButton>(R.id.tm_apptheme_settings).setOnClickListener {
+            view.findNavController()
+                .navigate(SettingsFragmentDirections.actionSettingsFragmentToThemeSettings())
         }
     }
 }
+
