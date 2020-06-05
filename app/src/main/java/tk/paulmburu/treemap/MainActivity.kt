@@ -19,8 +19,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
-        drawerLayout = binding.drawerLayout
-
 
         val navController = findNavController(R.id.myNavHostFragment)
 
@@ -28,9 +26,6 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<BottomNavigationView>(R.id.bottom_navigation)
             .setupWithNavController(navController)
-
-
-
 
     }
 }
