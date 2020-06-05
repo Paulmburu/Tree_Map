@@ -3,42 +3,28 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-        <androidx.drawerlayout.widget.DrawerLayout
-            android:id="@+id/drawerLayout"
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <fragment
+            android:id="@+id/myNavHostFragment"
+            android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:theme="@style/AppTheme">
+            app:defaultNavHost="true"
+            app:navGraph="@navigation/navigation" />
 
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            app:itemBackground="?android:attr/colorBackground"
+            app:itemIconTint="@drawable/bottom_nav_item_background"
+            app:itemTextColor="?android:attr/colorPrimary"
+            app:menu="@menu/bottom_nav_menu" />
 
-                <fragment
-                    android:id="@+id/myNavHostFragment"
-                    android:name="androidx.navigation.fragment.NavHostFragment"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:defaultNavHost="true"
-                    app:navGraph="@navigation/navigation" />
-
-                <com.google.android.material.bottomnavigation.BottomNavigationView
-                    android:id="@+id/bottom_navigation"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:background="@android:color/white"
-                    app:menu="@menu/bottom_nav_menu" />
-
-
-            </FrameLayout>
-
-            <com.google.android.material.navigation.NavigationView
-                android:id="@+id/navView"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="start"
-                app:headerLayout="@layout/nav_header_main"
-                app:menu="@menu/activity_main_drawer" />
-        </androidx.drawerlayout.widget.DrawerLayout>
+    </FrameLayout>
 
 </layout>
