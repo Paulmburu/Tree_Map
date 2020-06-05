@@ -33,6 +33,7 @@ import tk.paulmburu.treemap.R
 import tk.paulmburu.treemap.databinding.FragmentTreeBinding
 import tk.paulmburu.treemap.models.Tree
 import tk.paulmburu.treemap.user.UserManager
+import tk.paulmburu.treemap.utils.UserInfo
 import tk.paulmburu.treemap.utils.setOnSingleClickListener
 
 /**
@@ -43,11 +44,10 @@ class TreeFragment : Fragment() {
     private lateinit var treeName: TextInputEditText
     private lateinit var treeSpecie: TextInputEditText
     private lateinit var regionName: TextInputEditText
-    private lateinit var tree: Tree
+    private lateinit var submitButton: Button
     private lateinit var userManager: UserManager
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var binding: FragmentTreeBinding
-    private lateinit var currentPhotoPath: String
     private lateinit var newTreeImageView: CircleImageView
     private lateinit var treeBitmap: Bitmap
 
@@ -58,7 +58,6 @@ class TreeFragment : Fragment() {
     private var currentTreeCount: Int = 0
     private val LOCATION_PERMISSION_REQUEST_CODE = 1
     private var REQUEST_CHECK_SETTINGS = 2
-    val REQUEST_TAKE_PHOTO = 3
     val REQUEST_IMAGE_CAPTURE = 1
 
 
@@ -71,60 +70,75 @@ class TreeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentTreeBinding.inflate(inflater)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(activity!!)
         createLocationRequest()
 
         val application = requireNotNull(this.activity).application
         userManager = (application as MyApplication).userManager
-        currentTreeCount =  Integer.valueOf(userManager.treesPlantedByUser)
+//        currentTreeCount =  Integer.valueOf(userManager.treesPlantedByUser)?: 0
 
         val treeViewModel = ViewModelProviders.of(this)
             .get(TreeViewModel::class.java)
 
-        newTreeImageView = binding.root.findViewById<CircleImageView>(R.id.new_tree_image_id)
-        treeName = binding.root.findViewById<TextInputEditText>(R.id.tree_name_text_input_id)
-        treeSpecie = binding.root.findViewById<TextInputEditText>(R.id.tree_species_text_input_id)
-        regionName = binding.root.findViewById<TextInputEditText>(R.id.region_text_input_id)
+        newTreeImageView = view.findViewById<CircleImageView>(R.id.new_tree_image_id)
+        treeName = view.findViewById<TextInputEditText>(R.id.tree_name_text_input_id)
+        treeSpecie = view.findViewById<TextInputEditText>(R.id.tree_species_text_input_id)
+        regionName = view.findViewById<TextInputEditText>(R.id.region_text_input_id)
+        submitButton = view.findViewById<Button>(R.id.submit_new_tree_id)
 
         newTreeImageView.setOnClickListener {
             dispatchTakePicture_Intent()
         }
 
-        binding.root.findViewById<Button>(R.id.submit_new_tree_id).setOnSingleClickListener {
+        submitButton.setOnSingleClickListener {
             // navigation call here
 
             if(lat == 0.0 && long==0.0){
                 locationDialog()
+                return@setOnSingleClickListener
             }
 
             it.visibility = View.INVISIBLE
-            binding.root.findViewById<ProgressBar>(R.id.add_tree_progressbar).visibility = View.VISIBLE
+            view.findViewById<ProgressBar>(R.id.add_tree_progressbar).visibility = View.VISIBLE
+
             currentTreeCount = currentTreeCount + 1
             regionName.text.toString()
-            tree = Tree( System.currentTimeMillis(),(currentTreeCount).toString(),treeName.text.toString(),treeSpecie.text.toString(),regionName.text.toString(),"icons8_tree_planting_48.png","Buba","paulmburu53@gmail.com",
-                GeoPoint(lat,long),"Tree by ${userManager.username}"
+
+
+            val tree = Tree(
+                System.currentTimeMillis(),(currentTreeCount).toString(),
+                treeName.text.toString(),
+                treeSpecie.text.toString(),
+                regionName.text.toString(),
+                treeBitmap.toString(),
+                UserInfo.auth_username!!,
+                UserInfo.auth_email!!,
+                GeoPoint(lat,long),
+                "Tree by ${UserInfo.auth_username!!}"
             )
 
-            treeViewModel.saveTreeToFirebase(tree,userManager.username, userManager.userEmail,(currentTreeCount).toString(),regionName.text.toString(),treeBitmap)
+            treeViewModel.saveTreeToFirebase(
+                tree,
+                UserInfo.auth_username!!,
+                UserInfo.auth_email!!,
+                (currentTreeCount).toString(),
+                regionName.text.toString(),
+                treeBitmap)
             userManager.updateTreesPlantedCount((currentTreeCount).toString())
-            findNavController().navigate(TreeFragmentDirections.actionTreeFragmentToNiceWorkFragment())
+
+            findNavController().navigate(
+                TreeFragmentDirections.actionTreeFragmentToNiceWorkFragment()
+            )
 
         }
-//
-//        binding.root.findViewById<Button>(R.id.submit_new_tree_id).setOnClickListener{
-//            treeViewModel._navigateToNiceWorkFragment.observe(this, Observer {
-//                if(null != it){
-//                    this.findNavController().navigate(TreeFragmentDirections.actionTreeFragmentToNiceWorkFragment())
-//                    userManager.updateTreesPlantedCount((currentTreeCount++).toString())
-//                    treeViewModel.navigateToNiceWorkFragmentComplete()
-//                }
-//            })
-//        }
 
-
-
-        return binding.root
     }
+
 
     private fun getLatLocationGeopoint(binding: FragmentTreeBinding) {
         checkSelfLocationPermission()
@@ -225,7 +239,9 @@ class TreeFragment : Fragment() {
         builder.setPositiveButton("YES"){_, _ ->
             // Do something when user press the positive button
 //            Toast.makeText(context,"Ok, we change the app background.",Toast.LENGTH_SHORT).show()
-            binding.root.findNavController().navigate(TreeFragmentDirections.actionTreeFragmentToMapsFragment())
+            binding.root.findNavController().navigate(
+                TreeFragmentDirections.actionTreeFragmentToMapsFragment()
+            )
         }
 
 
