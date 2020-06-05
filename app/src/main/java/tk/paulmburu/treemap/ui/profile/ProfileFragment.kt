@@ -32,6 +32,7 @@ import tk.paulmburu.treemap.MyApplication
 import tk.paulmburu.treemap.R
 import tk.paulmburu.treemap.databinding.FragmentProfileBinding
 import tk.paulmburu.treemap.user.UserManager
+import tk.paulmburu.treemap.utils.UserInfo
 import tk.paulmburu.treemap.utils.showSnackbar
 import tk.paulmburu.treemap.utils.showToast
 
@@ -46,7 +47,6 @@ class ProfileFragment : Fragment() {
 
     private lateinit var binding: FragmentProfileBinding
     private lateinit var userManager: UserManager
-    private lateinit var currentImageUri: String
     private lateinit var profileImageView: CircleImageView
     private lateinit var viewModel: ProfileViewModel
 
@@ -93,7 +93,7 @@ class ProfileFragment : Fragment() {
 
 
         binding.root.findViewById<TextView>(R.id.user_name_id).apply {
-            setText(userManager.username)
+            setText(UserInfo.auth_username)
         }
 
         userManager.treesPlantedByUser.apply {
