@@ -75,12 +75,11 @@
 
         </androidx.cardview.widget.CardView>
 
-        <ImageView
-            android:id="@+id/imageView3"
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/chart"
             android:layout_width="407dp"
             android:layout_height="214dp"
             android:layout_marginTop="8dp"
-            android:src="@drawable/undraw_growing"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/user_name_id" />
@@ -105,7 +104,7 @@
             android:fontFamily="@font/nunito_black"
             android:text="Details"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+            app:layout_constraintTop_toBottomOf="@+id/chart" />
 
         <TextView
             android:id="@+id/areas_covered"
