@@ -18,36 +18,57 @@ class TreeViewModel : ViewModel() {
     val firebaseRepository = FirestoreRepository()
 
     val storage = Firebase.storage
+
     // Create a storage reference from our app
     var storageRef = storage.reference
 
 
-    var savedTrees : MutableLiveData<List<Tree>> = MutableLiveData()
+    var savedTrees: MutableLiveData<List<Tree>> = MutableLiveData()
     val _navigateToNiceWorkFragment: MutableLiveData<Boolean> = MutableLiveData()
     val navigaToNiceWorkFragment: LiveData<Boolean>
         get() = _navigateToNiceWorkFragment
 
     // save address to firebase
-    fun saveTreeToFirebase(newTree: Tree, username: String, userEmail: String,treeId: String, treeRegion: String, bitmap: Bitmap){
+    fun saveTreeToFirebase(
+        newTree: Tree,
+        username: String,
+        userEmail: String,
+        treeId: String,
+        treeRegion: String,
+        bitmap: Bitmap
+    ) {
 
-        firebaseRepository.saveNewArboristTree(newTree,username, userEmail, treeId)
+        firebaseRepository.updateArboristDetails(username, userEmail, newTree.tree_id)
             .addOnFailureListener {
-            Log.e(TAG,"Failed to save Arborist's Tree!")
-        }
-//        firebaseRepository.saveNewArboristTreeRegion(treeRegion,username,userEmail,treeId).addOnFailureListener{
-//            Log.e(TAG,"Failed to save Tree Region!")
-//        }
+                Log.e(TAG, "Failed to save Arborist's details!")
+            }
+
         firebaseRepository.addNewArboristTreeToGlobalTrees(newTree).addOnFailureListener {
-            Log.e(TAG,"Failed to save Tree to Global Trees!")
+            Log.e(TAG, "Failed to save Tree to Global Trees!")
         }
 
-        uploadTreeImageToFirebase(bitmap,username,userEmail,treeId)
+        firebaseRepository.saveNewArboristTree(newTree, username, userEmail, treeId)
+            .addOnFailureListener {
+                Log.e(TAG, "Failed to save Arborist's Tree!")
+            }
+
+        firebaseRepository.saveNewArboristTreeRegion(treeRegion, username, userEmail, treeId)
+            .addOnFailureListener {
+                Log.e(TAG, "Failed to save Arborist's Tree Region!")
+            }
+
+        uploadTreeImageToFirebase(bitmap, username, userEmail, treeId)
         _navigateToNiceWorkFragment.value = true
     }
 
-    fun uploadTreeImageToFirebase(bitmap: Bitmap, username: String, userEmail: String, treeId: String){
+    fun uploadTreeImageToFirebase(
+        bitmap: Bitmap,
+        username: String,
+        userEmail: String,
+        treeId: String
+    ) {
 
-        val treeRef = storageRef.child("${username}_${userEmail}/trees/${treeId}")
+        val treeRef = storageRef.child("${userEmail}/trees/${treeId}")
 
         val baos = ByteArrayOutputStream()
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
@@ -64,34 +85,8 @@ class TreeViewModel : ViewModel() {
         }
     }
 
-    // get realtime updates from firebase regarding saved trees
-    fun getSavedAddresses(): LiveData<List<Tree>> {
-        firebaseRepository.getSavedAddress().addSnapshotListener(EventListener<QuerySnapshot> { value, e ->
-            if (e != null) {
-                Log.w(TAG, "Listen failed.", e)
-                savedTrees.value = null
-                return@EventListener
-            }
 
-            var savedTreesList : MutableList<Tree> = mutableListOf()
-            for (doc in value!!) {
-                var tree = doc.toObject(Tree::class.java)
-                savedTreesList.add(tree)
-            }
-            savedTrees.value = savedTreesList
-        })
-
-        return savedTrees
-    }
-
-    // delete an address from firebase
-    fun deleteAddress(tree: Tree){
-        firebaseRepository.deleteAddress(tree).addOnFailureListener {
-            Log.e(TAG,"Failed to delete Address")
-        }
-    }
-
-    fun navigateToNiceWorkFragmentComplete(){
+    fun navigateToNiceWorkFragmentComplete() {
         _navigateToNiceWorkFragment.value = false
     }
 

@@ -111,7 +111,8 @@ class TreeFragment : Fragment() {
 
 
             val tree = Tree(
-                System.currentTimeMillis(),(currentTreeCount).toString(),
+                System.currentTimeMillis(),
+                (currentTreeCount).toString(),
                 treeName.text.toString(),
                 treeSpecie.text.toString(),
                 regionName.text.toString(),
