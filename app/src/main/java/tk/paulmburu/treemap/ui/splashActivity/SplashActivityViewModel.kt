@@ -13,17 +13,11 @@ class SplashActivityViewModel : ViewModel() {
 
     val authenticationState  = Transformations.map(FirebaseUserLiveData()){ user ->
         if (user != null) {
-            registerUser(user.displayName!!, user.email!!)
             AuthenticationState.AUTHENTICATED
         } else {
             AuthenticationState.UNAUTHENTICATED
         }
     }
-
-    fun registerUser(username: String, userEmail: String) {
-        firebaseRepository.createNewArborist(username!!,userEmail!!)
-    }
-
 
 }
 
