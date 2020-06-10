@@ -10,6 +10,7 @@ import com.google.firebase.firestore.FirebaseFirestoreSettings
 import com.google.firebase.firestore.QuerySnapshot
 import tk.paulmburu.treemap.models.Arborist
 import tk.paulmburu.treemap.models.Tree
+import tk.paulmburu.treemap.utils.UserInfo
 
 
 class FirestoreRepository {
@@ -26,31 +27,43 @@ class FirestoreRepository {
         firestoreDB.firestoreSettings = settings
     }
 
-    // save new user to firestore
-    fun createNewArborist(username: String, userEmail: String): Task<Void> {
-        var documentReference = firestoreDB.collection("treemap_arborists").document(username+"_"+userEmail).
-            collection("my_details").document("$username")
-        return documentReference.set(Arborist(username,userEmail,"0","150"))
+
+    fun updateArboristDetails(username: String, userEmail: String, trees: String): Task<Void> {
+        var documentReference =
+            firestoreDB.collection("treemap_arborists").document(userEmail).collection("my_details")
+                .document("$username")
+        return documentReference.set(Arborist(username, userEmail, trees, "150"))
     }
 
     // save tree to firebase
-    fun saveNewArboristTree(newTree: Tree, username: String, userEmail: String, treeId: String): Task<Void> {
+    fun saveNewArboristTree(
+        newTree: Tree,
+        username: String,
+        userEmail: String,
+        treeId: String
+    ): Task<Void> {
         //var
-        var documentReference = firestoreDB.collection("treemap_arborists").document(username+"_"+userEmail)
+        var documentReference = firestoreDB.collection("treemap_arborists").document(userEmail)
             .collection("trees_planted").document(treeId)
         return documentReference.set(newTree)
     }
 
-    fun saveNewArboristTreeRegion(treeRegion: String,username: String, userEmail: String, treeId: String): Task<Void> {
+    fun saveNewArboristTreeRegion(
+        treeRegion: String,
+        username: String,
+        userEmail: String,
+        treeId: String
+    ): Task<Void> {
         //var
-        var documentReference = firestoreDB.collection("treemap_arborists").document(username+"_"+userEmail)
+        var documentReference = firestoreDB.collection("treemap_arborists").document(userEmail)
             .collection("trees_regions").document(System.currentTimeMillis().toString())
         return documentReference.set(treeRegion)
     }
 
     // add tree to global planted trees
     fun addNewArboristTreeToGlobalTrees(newTree: Tree): Task<Void> {
-        var documentReference = firestoreDB.collection("global_planted_trees").document(System.currentTimeMillis().toString())
+        var documentReference = firestoreDB.collection("global_planted_trees")
+            .document(System.currentTimeMillis().toString())
         return documentReference.set(newTree)
     }
 
@@ -58,15 +71,25 @@ class FirestoreRepository {
         return firestoreDB.collection("global_planted_trees")
     }
 
-     fun getAllGlobalTrees(): Task<QuerySnapshot?>{
-        return try{
+    fun getAllCurrentArboristTrees(): CollectionReference {
+        return firestoreDB.collection("treemap_arborists").document(UserInfo.auth_email.toString())
+            .collection("trees_planted")
+    }
+
+    fun getAllCurrentArboristTreesRegions(): CollectionReference {
+        return firestoreDB.collection("treemap_arborists").document(UserInfo.auth_email.toString())
+            .collection("trees_regions")
+    }
+
+    fun getAllGlobalTrees(): Task<QuerySnapshot?> {
+        return try {
             val data = firestoreDB
                 .collection("global_planted_trees")
                 .get()
 
             data
 
-        }catch (e: Exception){
+        } catch (e: Exception) {
             throw e
         }
     }
@@ -78,10 +101,11 @@ class FirestoreRepository {
     }
 
     fun deleteAddress(tree: Tree): Task<Void> {
-        var documentReference =  firestoreDB.collection("users/paulmburu53@gmail/my_trees")
+        var documentReference = firestoreDB.collection("users/paulmburu53@gmail/my_trees")
             .document(tree.tree_id)
 
         return documentReference.delete()
     }
+
 
 }
