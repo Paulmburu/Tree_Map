@@ -17,15 +17,10 @@ import tk.paulmburu.treemap.R
 import tk.paulmburu.treemap.databinding.ArboristItemBinding
 import tk.paulmburu.treemap.databinding.FragmentHomeBinding
 import tk.paulmburu.treemap.models.Arborist
-import tk.paulmburu.treemap.models.Tree
 
 
 class HomeFragment : Fragment() {
 
-    companion object {
-        var list = arrayListOf<Tree>()
-        val arboristMap = HashMap<String, Arborist>()
-    }
 
     private lateinit var viewModel: HomeViewModel
     private var viewModelAdapter: HomeAdapter? = null
@@ -42,45 +37,42 @@ class HomeFragment : Fragment() {
         viewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
         loadingImageView = binding.root.findViewById(R.id.loading_imageview)
 
-        viewModel.loadingDataState.observe(this, Observer {
-            when(it){
-                is Loading -> {
-                    binding.root.findViewById<RecyclerView>(R.id.recyclerViewArborists).visibility = View.INVISIBLE
-                    loadingImageView.visibility = View.VISIBLE
-                }
-                is LoadingDone -> {
-                    loadingImageView.visibility = View.INVISIBLE
-                    binding.root.findViewById<RecyclerView>(R.id.recyclerViewArborists).visibility = View.VISIBLE
-                }
-                is LoadingError -> {
-                    loadingImageView.visibility = View.INVISIBLE
-                }
-            }
-        })
+//        viewModel.loadingDataState.observe(this, Observer {
+//            when(it){
+//                is Loading -> {
+//                    binding.root.findViewById<RecyclerView>(R.id.recyclerViewArborists).visibility = View.INVISIBLE
+//                    loadingImageView.visibility = View.VISIBLE
+//                }
+//                is LoadingDone -> {
+//                    loadingImageView.visibility = View.INVISIBLE
+//                    binding.root.findViewById<RecyclerView>(R.id.recyclerViewArborists).visibility = View.VISIBLE
+//                }
+//                is LoadingError -> {
+//                    loadingImageView.visibility = View.INVISIBLE
+//                }
+//            }
+//        })
 
-        viewModel.readData(object : FirebaseCallback {
-            override fun onCallback(list: List<Tree>) {
-                for(i in 0 until list.size){
-                    Log.d("$TAG ->username", "${list[i].aborist_username}")
-                    arboristMap.put(list[i].aborist_username,Arborist(list[i].aborist_username,list[i].arborist_email,"Planted "+ list[i].tree_id+" trees","150"))
-                }
-            }
-        })
-        val valueList = ArrayList(arboristMap.values)
 
         viewModelAdapter = HomeAdapter()
 
+        viewModel.arboristList.observe(viewLifecycleOwner, Observer {it ->
+            viewModelAdapter?.arborists = it
+        })
 
-        viewModelAdapter?.arborists = valueList
+        return binding.root
+    }
 
-        binding.root.findViewById<RecyclerView>(R.id.recyclerViewArborists).apply {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        view.findViewById<RecyclerView>(R.id.recyclerViewArborists).apply {
 
             adapter = viewModelAdapter
             layoutManager = LinearLayoutManager(context)
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         }
 
-        return binding.root
     }
 
     class HomeAdapter() : RecyclerView.Adapter<HomeViewHolder>() {
