@@ -55,15 +55,13 @@ class UserManager(private val storage: Storage) {
     fun updateTreesPlantedCount(updatedCount: String){
         storage.setString(TREES_PLANTED_BY_USER,updatedCount)
     }
-    fun loginUser(username: String,userEmail: String, password: String) : Boolean{
+    fun loginUser(username: String,userEmail: String) : Boolean{
         val registeredUser = this.username
         val registeredUserEmail = this.userEmail
 
         if(registeredUser != username) return false
         if(registeredUserEmail != userEmail) return false
 
-        val registeredPassword = storage.getString("$username$PASSWORD_SUFFIX")
-        if(registeredPassword != password) return false
 
         userJustLoggedIn()
         return true

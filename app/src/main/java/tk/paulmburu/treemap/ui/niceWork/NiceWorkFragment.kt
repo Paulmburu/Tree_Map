@@ -9,8 +9,6 @@ import tk.paulmburu.treemap.R
 
 
 class NiceWorkFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

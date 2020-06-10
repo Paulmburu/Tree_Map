@@ -1,6 +1,6 @@
 package tk.paulmburu.treemap.models
 
-import com.google.android.gms.maps.model.LatLng
+
 import com.google.firebase.firestore.GeoPoint
 
 data class Tree constructor(
