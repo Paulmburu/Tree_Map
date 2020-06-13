@@ -9,6 +9,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 import com.google.firebase.firestore.QuerySnapshot
 import tk.paulmburu.treemap.models.Arborist
+import tk.paulmburu.treemap.models.Region
 import tk.paulmburu.treemap.models.Tree
 import tk.paulmburu.treemap.utils.UserInfo
 
@@ -57,7 +58,7 @@ class FirestoreRepository {
         //var
         var documentReference = firestoreDB.collection("treemap_arborists").document(userEmail)
             .collection("trees_regions").document(System.currentTimeMillis().toString())
-        return documentReference.set(treeRegion)
+        return documentReference.set(Region(treeRegion))
     }
 
     // add tree to global planted trees
