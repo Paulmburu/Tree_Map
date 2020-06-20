@@ -13,6 +13,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import tk.paulmburu.treemap.models.Region
 import tk.paulmburu.treemap.models.Tree
 import tk.paulmburu.treemap.repository.FirestoreRepository
 import tk.paulmburu.treemap.ui.home.LoadingError
@@ -33,8 +34,8 @@ class ProfileViewModel() : ViewModel() {
     val treesPlanted: LiveData<String>
         get() = _treesPlanted
 
-    private val _treesRegions = MutableLiveData<MutableList<String>>()
-    val treesRegions: LiveData<MutableList<String>>
+    private val _treesRegions = MutableLiveData<MutableList<Region>>()
+    val treesRegions: LiveData<MutableList<Region>>
         get() = _treesRegions
 
     val firebaseRepository = FirestoreRepository()
@@ -100,7 +101,7 @@ class ProfileViewModel() : ViewModel() {
 
     }
 
-    fun getArboristTreesRegions(): Flow<String> = callbackFlow {
+    fun getArboristTreesRegions(): Flow<Region> = callbackFlow {
 
         val subscription = firebaseRepository.getAllCurrentArboristTreesRegions()
             .addSnapshotListener(MetadataChanges.INCLUDE) { querySnapshot, e ->
@@ -111,7 +112,7 @@ class ProfileViewModel() : ViewModel() {
                 for (change in querySnapshot!!.documentChanges) {
                     if (change.type == DocumentChange.Type.ADDED) {
                         Log.d(TAG, "New city: ${change.document.data}")
-                        offer(change.document.data.toString())
+                        offer(change.document.toObject(Region::class.java))
                     }
                     val source = if (querySnapshot.metadata.isFromCache)
                         "local cache"
