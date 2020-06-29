@@ -18,7 +18,7 @@ They devoted their time once a while to plant trees as a way of giving back to o
 # Screenshots
 <br />
 <p align="center">
-<image src="screenshots/1.png" width="600">
+<image src="screenshots/1.png" width="100%">
 
 An android app for tracking young trees :evergreen_tree::evergreen_tree::evergreen_tree:.
 
