@@ -65,7 +65,7 @@
                 android:id="@+id/arborist_trees_planted"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Planted 24 trees"
+                android:text="@string/planted_24_trees"
                 android:textColor="@android:color/white"
                 app:arboristDetails="@{arborist.trees_planted_count}"
                 app:layout_constraintBottom_toBottomOf="@+id/aborist_imageview"
