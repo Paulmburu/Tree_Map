@@ -53,7 +53,8 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0" />
+                    app:layout_constraintVertical_bias="0.0"
+                    android:contentDescription="@string/JDprofile" />
 
                 <TextView
                     android:id="@+id/user_planted_trees_id"
@@ -61,7 +62,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
-                    android:text="43"
+                    android:text="@string/_43"
                     android:textColor="@color/colorPrimary"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -90,7 +91,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="64dp"
             android:fontFamily="@font/nunito_black"
-            android:text="John Doe"
+            android:text="@string/john_doe"
             app:layout_constraintEnd_toEndOf="@+id/cardView"
             app:layout_constraintStart_toStartOf="@+id/cardView"
             app:layout_constraintTop_toTopOf="@+id/cardView" />
@@ -102,7 +103,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="32dp"
             android:fontFamily="@font/nunito_black"
-            android:text="Details"
+            android:text="@string/details"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/chart" />
 
@@ -112,7 +113,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/nunito_bold"
-            android:text="Areas covered : "
+            android:text="@string/areas_covered"
             app:layout_constraintStart_toStartOf="@+id/details_tv"
             app:layout_constraintTop_toBottomOf="@+id/details_tv" />
 
@@ -121,7 +122,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/nunito_semibold"
-            android:text="Taita, Busia, Nairobi"
+            android:text="@string/taita_busia_nairobi"
             android:textColor="@color/colorPrimary"
             app:layout_constraintBottom_toBottomOf="@+id/areas_covered"
             app:layout_constraintStart_toEndOf="@+id/areas_covered"
@@ -133,7 +134,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/nunito_bold"
-            android:text="Total trees planted : "
+            android:text="@string/total_trees_planted"
             app:layout_constraintStart_toStartOf="@+id/areas_covered"
             app:layout_constraintTop_toBottomOf="@+id/areas_covered" />
 
@@ -142,7 +143,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/nunito_semibold"
-            android:text="43"
+            android:text="@string/_43"
             android:textColor="@color/colorPrimary"
             app:layout_constraintBottom_toBottomOf="@+id/total_trees_planted"
             app:layout_constraintStart_toEndOf="@+id/total_trees_planted"
@@ -154,7 +155,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/nunito_bold"
-            android:text="Target : "
+            android:text="@string/target"
             app:layout_constraintStart_toStartOf="@+id/total_trees_planted"
             app:layout_constraintTop_toBottomOf="@+id/total_trees_planted" />
 
@@ -163,7 +164,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/nunito_semibold"
-            android:text="150 trees"
+            android:text="@string/_150_trees"
             android:textColor="@color/colorPrimary"
             app:layout_constraintBottom_toBottomOf="@+id/target_tv"
             app:layout_constraintStart_toEndOf="@+id/target_tv"
@@ -178,7 +179,8 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="@+id/user_image_view_id"
-            app:srcCompat="@drawable/loading_animation" />
+            app:srcCompat="@drawable/loading_animation"
+            android:contentDescription="@string/JDprofilesection" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

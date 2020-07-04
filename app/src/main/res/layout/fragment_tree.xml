@@ -18,7 +18,7 @@
             android:background="@drawable/button_round_corners"
             android:fontFamily="@font/nunito_bold"
             android:padding="5dp"
-            android:text="Location coordinates success"
+            android:text="@string/location_coordinates_success"
             android:textColor="@android:color/white"
             android:visibility="invisible"
             app:layout_constraintStart_toStartOf="@+id/textInputLayout3"
@@ -52,7 +52,8 @@
             app:civ_circle_background_color="@color/colorGrayThumbi"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:focusable="true" />
 
         <TextView
             android:id="@+id/add_new_tree_image_id"
@@ -127,7 +128,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nunito_bold"
                 android:gravity="center_vertical"
-                android:hint="Region of Country/State/County"
+                android:hint="@string/region_of_country_state_county"
                 android:textSize="14sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -139,7 +140,7 @@
             android:background="@drawable/button_round_corners"
             android:fontFamily="@font/nunito_bold"
             android:padding="5dp"
-            android:text="Loading location coordinates"
+            android:text="@string/loading_location_coordinates"
             android:textColor="@android:color/white"
             android:visibility="invisible"
             app:layout_constraintStart_toStartOf="@+id/textInputLayout3"

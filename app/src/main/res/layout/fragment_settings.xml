@@ -16,7 +16,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
                 <View
                     android:id="@+id/view10"
@@ -47,7 +47,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:text="Tree Map notifications"
+                    android:text="@string/tree_map_notifications"
                     app:layout_constraintBottom_toBottomOf="@+id/imageButton9"
                     app:layout_constraintStart_toEndOf="@+id/imageButton9"
                     app:layout_constraintTop_toTopOf="@+id/imageButton9" />
@@ -59,7 +59,8 @@
                     android:layout_marginTop="16dp"
                     android:background="@drawable/ic_signout"
                     app:layout_constraintStart_toStartOf="@+id/view8"
-                    app:layout_constraintTop_toBottomOf="@+id/view8" />
+                    app:layout_constraintTop_toBottomOf="@+id/view8"
+                    android:contentDescription="@string/todout" />
 
                 <ImageButton
                     android:id="@+id/imageButton13"
@@ -68,7 +69,8 @@
                     android:layout_marginTop="16dp"
                     android:background="@drawable/ic_community"
                     app:layout_constraintStart_toStartOf="@+id/view3"
-                    app:layout_constraintTop_toBottomOf="@+id/view3" />
+                    app:layout_constraintTop_toBottomOf="@+id/view3"
+                    android:contentDescription="@string/todocom" />
 
                 <ImageButton
                     android:id="@+id/imageButton14"
@@ -77,7 +79,8 @@
                     android:layout_marginTop="16dp"
                     android:background="@drawable/ic_help"
                     app:layout_constraintStart_toStartOf="@+id/textView17"
-                    app:layout_constraintTop_toBottomOf="@+id/textView17" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView17"
+                    android:contentDescription="@string/todoTR" />
 
                 <ImageButton
                     android:id="@+id/imageButton9"
@@ -86,7 +89,8 @@
                     android:layout_marginTop="16dp"
                     android:background="@drawable/ic_notifications"
                     app:layout_constraintStart_toStartOf="@+id/textView27"
-                    app:layout_constraintTop_toBottomOf="@+id/textView27" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView27"
+                    android:contentDescription="@string/todoNotify" />
 
                 <View
                     android:id="@+id/view8"
@@ -107,7 +111,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="Notifications"
+                    android:text="@string/notifications"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="@+id/view7"
                     app:layout_constraintTop_toBottomOf="@+id/view7" />
@@ -123,7 +127,8 @@
                     android:textAlignment="textEnd"
                     app:layout_constraintBottom_toBottomOf="@+id/textView13"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textView13" />
+                    app:layout_constraintTop_toTopOf="@+id/textView13"
+                    android:contentDescription="@string/todosignout" />
 
                 <ImageButton
                     android:id="@+id/mk_community_btn_settings"
@@ -134,14 +139,15 @@
                     android:background="@drawable/ic_arrow_forward"
                     app:layout_constraintBottom_toBottomOf="@+id/textView21"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textView21" />
+                    app:layout_constraintTop_toTopOf="@+id/textView21"
+                    android:contentDescription="@string/com" />
 
                 <TextView
                     android:id="@+id/textView21"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:text="Community"
+                    android:text="@string/community"
                     app:layout_constraintBottom_toBottomOf="@+id/imageButton13"
                     app:layout_constraintStart_toEndOf="@+id/imageButton13"
                     app:layout_constraintTop_toTopOf="@+id/imageButton13" />
@@ -151,7 +157,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="Support"
+                    android:text="@string/support"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="@+id/view10"
                     app:layout_constraintTop_toBottomOf="@+id/view10" />
@@ -161,7 +167,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="19dp"
                     android:layout_marginTop="16dp"
-                    android:text="Version 0.0.1-alpha"
+                    android:text="@string/version_0_0_1_alpha"
                     app:layout_constraintEnd_toEndOf="@+id/mk_exit_btn_settings"
                     app:layout_constraintStart_toStartOf="@+id/mk_exit_btn_settings"
                     app:layout_constraintTop_toBottomOf="@+id/mk_exit_btn_settings" />
@@ -171,7 +177,7 @@
                     android:layout_width="61dp"
                     android:layout_height="19dp"
                     android:layout_marginTop="16dp"
-                    android:text="Tree Map"
+                    android:text="@string/tree_map"
                     android:textColor="@color/colorPrimary"
                     android:textSize="18sp"
                     android:textStyle="bold"
@@ -198,7 +204,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="32dp"
-                    android:text="Settings"
+                    android:text="@string/settings"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="@+id/user_image_view_id"
                     app:layout_constraintTop_toBottomOf="@+id/user_image_view_id" />
@@ -226,7 +232,8 @@
                     android:background="@drawable/ic_arrow_forward"
                     app:layout_constraintBottom_toBottomOf="@+id/textView20"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textView20" />
+                    app:layout_constraintTop_toTopOf="@+id/textView20"
+                    android:contentDescription="@string/helpQ" />
 
                 <ImageButton
                     android:background="@drawable/ic_arrow_forward"
@@ -237,14 +244,15 @@
                     android:layout_marginRight="16dp"
                     app:layout_constraintBottom_toBottomOf="@+id/textView10"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textView10" />
+                    app:layout_constraintTop_toTopOf="@+id/textView10"
+                    android:contentDescription="@string/modeBTN" />
 
                 <TextView
                     android:id="@+id/textView13"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:text="Signout"
+                    android:text="@string/signout"
                     app:layout_constraintBottom_toBottomOf="@+id/imageButton10"
                     app:layout_constraintStart_toEndOf="@+id/imageButton10"
                     app:layout_constraintTop_toTopOf="@+id/imageButton10" />
@@ -254,7 +262,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:text="Night mode"
+                    android:text="@string/night_mode"
                     app:layout_constraintBottom_toBottomOf="@+id/imageButton8"
                     app:layout_constraintStart_toEndOf="@+id/imageButton8"
                     app:layout_constraintTop_toTopOf="@+id/imageButton8" />
@@ -278,7 +286,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:text="Help"
+                    android:text="@string/help"
                     app:layout_constraintBottom_toBottomOf="@+id/imageButton14"
                     app:layout_constraintStart_toEndOf="@+id/imageButton14"
                     app:layout_constraintTop_toTopOf="@+id/imageButton14" />
@@ -302,7 +310,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
-                    android:text="Paul Mburu"
+                    android:text="@string/paul_mburu"
                     app:layout_constraintStart_toEndOf="@+id/user_image_view_id"
                     app:layout_constraintTop_toTopOf="@+id/user_image_view_id" />
 
@@ -313,7 +321,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="16dp"
-                    android:text="paulmburu53@gmail.com"
+                    android:text="@string/paulmburu53_gmail_com"
                     app:layout_constraintBottom_toBottomOf="@+id/user_image_view_id"
                     app:layout_constraintStart_toStartOf="@+id/user_name_settings"
                     app:layout_constraintTop_toBottomOf="@+id/user_name_settings"
@@ -326,7 +334,8 @@
                     android:layout_marginTop="16dp"
                     android:background="@drawable/ic_brightness"
                     app:layout_constraintStart_toStartOf="@+id/textView15"
-                    app:layout_constraintTop_toBottomOf="@+id/textView15" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView15"
+                    android:contentDescription="@string/mode" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView></androidx.constraintlayout.widget.ConstraintLayout>
