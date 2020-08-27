@@ -13,7 +13,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|left"
-            android:src="@drawable/splash4" />
+            android:src="@drawable/splash4"
+            android:contentDescription="@string/sectionlower" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -23,9 +24,9 @@
             <TextView
                 android:layout_width="259dp"
                 android:layout_height="114dp"
-                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
                 android:fontFamily="@font/nunito_bold"
-                android:text="Plant a tree, Make a change"
+                android:text="@string/plant_a_tree_make_a_change"
                 android:textColor="@color/darkGreen"
                 android:textSize="35sp" />
 
@@ -33,9 +34,9 @@
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
                 android:fontFamily="@font/nunito_semibold"
-                android:text="Recent Arborists"
+                android:text="@string/recent_arborists"
                 android:textColor="@color/darkGreen"
                 android:textSize="18sp" />
 
@@ -68,7 +69,8 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/recyclerViewArborists"
                     app:layout_constraintTop_toTopOf="@+id/recyclerViewArborists"
-                    app:srcCompat="@drawable/loading_animation" />
+                    app:srcCompat="@drawable/loading_animation"
+                    android:contentDescription="@string/profileIMG" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
